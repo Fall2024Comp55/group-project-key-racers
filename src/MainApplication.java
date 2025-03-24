@@ -53,6 +53,7 @@ public class MainApplication extends GraphicsProgram{
 	
 	public void switchToWelcomeScreen() {
 		switchToScreen(welcomePane);
+		
 	}
 	
 	
