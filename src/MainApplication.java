@@ -14,7 +14,7 @@ public class MainApplication extends GraphicsProgram{
 	private WelcomePane welcomePane;
 	private DescriptionPane descriptionPane;
 	private GraphicsPane currentScreen;
-
+	private SoundPlayer soundPlayer = new SoundPlayer();
 
 	public MainApplication() {
 		super();
@@ -28,6 +28,7 @@ public class MainApplication extends GraphicsProgram{
 	
 	public void init() {
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		soundPlayer.playSound("media/MainmenuSound.wav");
 	}
 	
 	public void run() {
