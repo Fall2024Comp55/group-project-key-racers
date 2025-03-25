@@ -23,8 +23,8 @@ public class WelcomePane extends GraphicsPane{
 	}
 	
 	private void addPicture(){
-		GImage startImage = new GImage("start.png", 200, 100);
-		startImage.scale(0.5, 0.5);
+		GImage startImage = new GImage("TitleScreen.jpg", 200, 100);
+		startImage.scale(0.85, 0.75);
 		startImage.setLocation((mainScreen.getWidth() - startImage.getWidth())/ 2, 70);
 		
 		contents.add(startImage);
