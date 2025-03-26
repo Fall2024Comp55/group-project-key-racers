@@ -1,13 +1,13 @@
 public enum ObstacleType {
-	Bonus, Crate, FallenTree, Stick, Stone;
+	BONUS, CRATE, FALLENTREE, STICK, STONE;
 	
 	public String toString() {
 		switch(this) {
-			case Bonus: return "Bonus";
-			case Crate: return "Crate";
-			case FallenTree: return "FallenTree";
-			case Stick: return "Stick";
-			case Stone: return "Stone";
+			case BONUS: return "Bonus";
+			case CRATE: return "Crate";
+			case FALLENTREE: return "FallenTree";
+			case STICK: return "Stick";
+			case STONE: return "Stone";
 		}
 		return null;
 	}
