@@ -14,6 +14,7 @@ public class MainApplication extends GraphicsProgram{
 	private WelcomePane welcomePane;
 	private DescriptionPane descriptionPane;
 	private GraphicsPane currentScreen;
+	private GameScreenPane gameScreenPane;
 	private SoundPlayer soundPlayer = new SoundPlayer();
 
 	public MainApplication() {
@@ -38,6 +39,7 @@ public class MainApplication extends GraphicsProgram{
 		//Initialize all Panes
 		welcomePane = new WelcomePane(this);
 		descriptionPane = new DescriptionPane(this);
+		gameScreenPane = new GameScreenPane(this);
 
 		//TheDefaultPane
 		switchToScreen(welcomePane);
@@ -54,7 +56,10 @@ public class MainApplication extends GraphicsProgram{
 	
 	public void switchToWelcomeScreen() {
 		switchToScreen(welcomePane);
-		
+	}
+	
+	public void switchToGameScreen() {
+		switchToScreen(gameScreenPane);
 	}
 	
 	

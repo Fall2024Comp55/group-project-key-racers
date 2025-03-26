@@ -8,7 +8,7 @@ public class GameScreenPane extends GraphicsPane {
 	
 	@Override
 	public void showContent() {
-		
+		addRoad();
 	}
 
 	@Override
