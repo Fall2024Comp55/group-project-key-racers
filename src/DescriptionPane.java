@@ -19,6 +19,7 @@ public class DescriptionPane extends GraphicsPane{
 	@Override
 	public void showContent() {
 		disPlay();
+		backButton();
 		
 	}
 
@@ -36,6 +37,20 @@ public class DescriptionPane extends GraphicsPane{
 		
 		contents.add(backGround);
 		mainScreen.add(backGround);
+	}
+	
+	
+	public void backButton() {
+		GOval button = new GOval(16,26,100,105);
+		button.setVisible(false);
+	
+		
+		contents.add(button);
+		mainScreen.add(button);
+		
+		
+		
+		
 	}
 	
 	
