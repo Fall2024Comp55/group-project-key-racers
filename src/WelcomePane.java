@@ -12,6 +12,7 @@ public class WelcomePane extends GraphicsPane{
 	public void showContent() {
 		addPicture();
 		addDescriptionButton();
+		addStartGameButton();
 	}
 
 	@Override
@@ -35,6 +36,16 @@ public class WelcomePane extends GraphicsPane{
 		GImage moreButton = new GImage("InstructionsButton.png", 200, 200);
 		moreButton.scale(0.5, 0.5);
 		moreButton.setLocation((mainScreen.getWidth() - moreButton.getWidth())/ 2 - 1, 301);
+		
+		contents.add(moreButton);
+		mainScreen.add(moreButton);
+
+	}
+	
+	private void addStartGameButton() {
+		GImage moreButton = new GImage("StartGameButton.png", 200, 200);
+		moreButton.scale(0.5, 0.5);
+		moreButton.setLocation((mainScreen.getWidth() - moreButton.getWidth())/ 2, 215);
 		
 		contents.add(moreButton);
 		mainScreen.add(moreButton);
