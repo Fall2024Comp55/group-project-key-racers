@@ -31,11 +31,11 @@ public class DescriptionPane extends GraphicsPane{
 	}
 	
 	public void disPlay() {
-		GImage image = new GImage("InstructionsScreen.jpg");
-		image.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		GImage backGround = new GImage("InstructionsScreen.jpg");
+		backGround.setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
 		
-		contents.add(image);
-		mainScreen.add(image);
+		contents.add(backGround);
+		mainScreen.add(backGround);
 	}
 	
 	
