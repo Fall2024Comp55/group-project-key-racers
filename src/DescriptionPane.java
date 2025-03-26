@@ -18,6 +18,7 @@ public class DescriptionPane extends GraphicsPane{
 	
 	@Override
 	public void showContent() {
+		disPlay();
 		
 	}
 
@@ -29,6 +30,13 @@ public class DescriptionPane extends GraphicsPane{
 		contents.clear();
 	}
 	
+	public void disPlay() {
+		GImage image = new GImage("InstructionsScreen.jpg");
+		image.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		
+		contents.add(image);
+		mainScreen.add(image);
+	}
 	
 	
 
