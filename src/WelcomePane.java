@@ -23,7 +23,7 @@ public class WelcomePane extends GraphicsPane{
 		contents.clear();
 	}
 	
-	//Add in the title screen of the game aka background image
+	//Add in the title screen of the game aka background image for the game
 	private void addPicture(){
 		GImage startImage = new GImage("TitleScreen.jpg", 200, 100);
 		startImage.scale(0.85, 0.75);
