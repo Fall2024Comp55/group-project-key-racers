@@ -5,6 +5,7 @@ import java.io.IOException;
 public class SoundPlayer {
     private Clip clip;
 
+    // grabs sound file and plays it
     public void playSound(String filePath) {
         try {
             File soundFile = new File(filePath);
@@ -17,7 +18,8 @@ public class SoundPlayer {
             System.err.println("Error playing sound: " + e.getMessage());
         }
     }
-
+    
+    // stops the sound when ordered to do so
     public void stopSound() {
         if (clip != null && clip.isRunning()) {
             clip.stop();
