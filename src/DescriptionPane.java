@@ -35,6 +35,7 @@ public class DescriptionPane extends GraphicsPane{
 		GImage backGround = new GImage("InstructionsScreen.jpg");
 		backGround.setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
 		
+		
 		contents.add(backGround);
 		mainScreen.add(backGround);
 	}
