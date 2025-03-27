@@ -5,8 +5,13 @@ public class GameScreenPane extends GraphicsPane {
 	
 	private SoundPlayer gameMusic = new SoundPlayer();
 	
+	private Car car1;
+	private Car car2;
+	
 	public GameScreenPane(MainApplication mainScreen) {
 		this.mainScreen = mainScreen;
+		car1 = new Car("RedCar.png", 200, 500,200,500);
+		car2 = new Car("BlueCar.png", 500,500,200,500);
 		
 	}
 	
@@ -14,6 +19,7 @@ public class GameScreenPane extends GraphicsPane {
 	public void showContent() {
 		playMusic();
 		addRoad();
+		addCars();
 	}
 
 	@Override
@@ -37,5 +43,13 @@ public class GameScreenPane extends GraphicsPane {
 		
 		contents.add(roadImage);
 		mainScreen.add(roadImage);
+	}
+	
+	private void addCars() {
+		contents.add(car1.getCarImage());
+		contents.add(car2.getCarImage());
+		
+		mainScreen.add(car1.getCarImage());
+		mainScreen.add(car2.getCarImage());
 	}
 }
