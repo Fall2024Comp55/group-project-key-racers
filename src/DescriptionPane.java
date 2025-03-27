@@ -30,7 +30,7 @@ public class DescriptionPane extends GraphicsPane{
 		}
 		contents.clear();
 	}
-	
+	// this method display the image in the background
 	public void disPlay() {
 		GImage backGround = new GImage("InstructionsScreen.jpg");
 		backGround.setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
@@ -39,7 +39,7 @@ public class DescriptionPane extends GraphicsPane{
 		mainScreen.add(backGround);
 	}
 	
-	
+	//this method create an oval button and placed behind the backArrow icon in top left of the screen.
 	public void backButton() {
 		GOval button = new GOval(16,26,100,105);
 		button.setVisible(false);
