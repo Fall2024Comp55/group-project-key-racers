@@ -23,6 +23,7 @@ public class WelcomePane extends GraphicsPane{
 		contents.clear();
 	}
 	
+	//Add in the title screen of the game aka background image
 	private void addPicture(){
 		GImage startImage = new GImage("TitleScreen.jpg", 200, 100);
 		startImage.scale(0.85, 0.75);
@@ -32,6 +33,9 @@ public class WelcomePane extends GraphicsPane{
 		mainScreen.add(startImage);
 	}
 	
+	/*Add in the Instruction button, which is where the player can click on to 
+	 * find instructions
+	 */
 	private void addDescriptionButton() {
 		GImage moreButton = new GImage("InstructionsButton.png", 200, 200);
 		moreButton.scale(0.5, 0.5);
@@ -42,6 +46,9 @@ public class WelcomePane extends GraphicsPane{
 
 	}
 	
+	/*Add in the Start Game button, which is where the player clicks on to start 
+	 * the game
+	*/
 	private void addStartGameButton() {
 		GImage moreButton = new GImage("StartGameButton.png", 200, 200);
 		moreButton.scale(0.5, 0.5);
