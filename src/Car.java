@@ -32,12 +32,14 @@ public class Car implements ActionListener{
 	
 	
 	public void increaseSpeed(int speed) {
-		
+		speed += 1;
 	}
 	
-	
+	//resets speed, the timer is reset to make acceleration always take a constant amount of time
 	public void restSpeedForStart() {
 		speed = originalSpeed;
+		t.stop();
+		t = new Timer(MS, this);
 	}
 	
 	public void moveLeft() {
@@ -66,6 +68,6 @@ public class Car implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		increaseSpeed(speed);
 	}
 }
