@@ -6,12 +6,17 @@ public class Obstacle{
 	private int positionY;
 	private int losePoints;
 	
-	public Obstacle() {
-		
+	GImage image;
+	
+	public Obstacle(ObstacleType oType, int positionX) {
+		this.oType = oType;
+		this.positionX = positionX;
+		positionY = 0;
 	}
 	
 	public void spawn() {
-		
+		String s = "media/" + oType.toString() + ".png";
+		image = new GImage(s, positionX, positionY);
 	}
 	
 	/* public boolean checkCollision(){}
