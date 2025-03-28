@@ -34,17 +34,19 @@ public class Car {
 	}
 	
 	public void moveLeft() {
-		
-		
+		positionX -= 1;
 	}
 	
 	public void moveRight() {
-	
-		
+		positionX += 1;
 	}
 	
 	public void checkBoundaries() {
-		
+		if(positionX < leftBoundary) {
+			positionX = leftBoundary;
+		} else if(positionX > rightBoundary) {
+			positionX = rightBoundary;
+		}
 		
 	}
     // Returns the car's GImage object so it can be added to the game screen

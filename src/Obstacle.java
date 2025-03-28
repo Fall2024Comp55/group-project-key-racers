@@ -4,7 +4,7 @@ public class Obstacle{
 	private ObstacleType oType;
 	private int positionX;
 	private int positionY;
-	private int losePoints;
+	private final int losePoints = 1;
 	
 	GImage image;
 	
@@ -14,6 +14,7 @@ public class Obstacle{
 		positionY = 0;
 	}
 	
+	//This function fills out the image variable to be used when shown
 	public void spawn() {
 		String s = "media/" + oType.toString() + ".png";
 		image = new GImage(s, positionX, positionY);
