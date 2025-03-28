@@ -64,7 +64,7 @@ public class WelcomePane extends GraphicsPane{
 		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(1)) {
 			mainScreen.switchToDescriptionScreen();
 		}
-		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(2)) {
+		else if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(2)) {
 			mainScreen.switchToGameScreen();
 		}
 	}
