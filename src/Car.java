@@ -1,18 +1,23 @@
 import acm.graphics.GImage;
 import acm.graphics.GObject;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 
-public class Car {
+public class Car implements ActionListener{
 	private int speed;
 	private int originalSpeed;
 	private int positionX;
 	private int leftBoundary;
 	private int rightBoundary;
+	private Timer t;
+	private final int MS = 5000;
 	
 	private GImage carImage;
 	
     // Constructor initializes the car with an image, position, and movement boundaries
-	public Car(String imagePath,int startX, int startY, int leftBoundary, int rightBoundary ) {
+	public Car(String imagePath,int startX, int startY, int leftBoundary, int rightBoundary){
 		this.carImage = new GImage(imagePath, startX, startY);
 		this.positionX = startX;
 		this.originalSpeed = 5; // the default speed
@@ -20,6 +25,7 @@ public class Car {
 		this.speed = originalSpeed;
 		this.leftBoundary = leftBoundary;
 		this.rightBoundary = rightBoundary;
+		t = new Timer(MS, this);
 	
 	}
 	
@@ -31,6 +37,7 @@ public class Car {
 	
 	
 	public void restSpeedForStart() {
+		speed = originalSpeed;
 	}
 	
 	public void moveLeft() {
@@ -41,16 +48,24 @@ public class Car {
 		positionX += 1;
 	}
 	
+	//if the car gets out of bounds it should teleport to the closer boundary
 	public void checkBoundaries() {
 		if(positionX < leftBoundary) {
 			positionX = leftBoundary;
 		} else if(positionX > rightBoundary) {
 			positionX = rightBoundary;
 		}
-		
 	}
     // Returns the car's GImage object so it can be added to the game screen
 	public GImage getCarImage() {
 		return carImage;
+	}
+
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
