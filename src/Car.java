@@ -11,6 +11,7 @@ public class Car {
 	
 	private GImage carImage;
 	
+    // Constructor initializes the car with an image, position, and movement boundaries
 	public Car(String imagePath,int startX, int startY, int leftBoundary, int rightBoundary ) {
 		this.carImage = new GImage(imagePath, startX, startY);
 		this.positionX = startX;
@@ -46,7 +47,7 @@ public class Car {
 		
 		
 	}
-	
+    // Returns the car's GImage object so it can be added to the game screen
 	public GImage getCarImage() {
 		return carImage;
 	}
