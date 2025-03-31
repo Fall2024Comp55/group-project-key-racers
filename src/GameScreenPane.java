@@ -80,4 +80,26 @@ public class GameScreenPane extends GraphicsPane {
 		mainScreen.add(car1.getCarImage());
 		mainScreen.add(car2.getCarImage());
 	}
+	
+	public void moveLeftPlayer1() {
+		car1.checkBoundaries();
+		car1.updateXleft();
+	}
+	
+	
+	public void moveRightPlayer1() {
+		car1.checkBoundaries();
+		car1.updateXright();
+	}
+	
+	public void moveLeftPlayer2() {
+		car2.checkBoundaries();
+		car2.updateXleft();
+	}
+	
+	
+	public void moveRightPlayer2() {
+		car2.checkBoundaries();
+		car2.updateXright();
+	}
 }

@@ -42,25 +42,11 @@ public class Car implements ActionListener{
 		t = new Timer(MS, this);
 	}
 	
-	public void moveLeftPlayer1() {
-		checkBoundaries();
+	public void updateXleft() {
 		positionX -= 1;
 	}
 	
-	
-	public void moveRightPlayer1() {
-		checkBoundaries();
-		positionX += 1;
-	}
-	
-	public void moveLeftPlayer2() {
-		checkBoundaries();
-		positionX -= 1;
-	}
-	
-	
-	public void moveRightPlayer2() {
-		checkBoundaries();
+	public void updateXright() {
 		positionX += 1;
 	}
 	
