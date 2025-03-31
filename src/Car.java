@@ -43,14 +43,14 @@ public class Car implements ActionListener{
 	}
 	
 	public void moveLeft() {
-		positionX -= 1;
 		checkBoundaries();
+		positionX -= 1;
 	}
 	
 	
 	public void moveRight() {
-		positionX += 1;
 		checkBoundaries();
+		positionX += 1;
 	}
 	
 	//if the car gets out of bounds it should teleport to the closer boundary
