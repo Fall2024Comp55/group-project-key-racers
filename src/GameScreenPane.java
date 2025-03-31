@@ -60,7 +60,7 @@ public class GameScreenPane extends GraphicsPane {
 	private void addTimer() {
 		timerLabel = new GLabel("3:00", 100, 100);
 		timerLabel.setFont("Arial-Bold-40");
-		timerLabel.setColor(Color.blue);
+		timerLabel.setColor(Color.YELLOW);
 		timerLabel.setLocation((mainScreen.getWidth() - timerLabel.getWidth()) / 2, 50);
 		
 		contents.add(timerLabel);
