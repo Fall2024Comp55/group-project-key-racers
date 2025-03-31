@@ -10,6 +10,7 @@ public class GameScreenPane extends GraphicsPane {
 	
 	private Car car1;
 	private Car car2;
+	private GImage tree1, tree2, tree3, tree4, tree5;
 	private GLabel timerLabel;
 	private GImage roadImage;
 	private RaceTimer raceTimer;
@@ -20,6 +21,13 @@ public class GameScreenPane extends GraphicsPane {
 		car1 = new Car("RedCar.png", 200, 500, 200, 500);
 		car2 = new Car("BlueCar.png", 500, 500, 200, 500);
 		
+		// add trees
+		tree1 = new GImage("Tree.png", 50, 10);
+		tree2 = new GImage("Tree.png", 50, 400);
+		tree3 = new GImage("Tree.png", 370, 200);
+		tree4 = new GImage("Tree.png", 700, 10);
+		tree5 = new GImage("Tree.png", 700, 400);
+
 	}
 	
 	@Override
@@ -28,6 +36,7 @@ public class GameScreenPane extends GraphicsPane {
 		addRoad();
 		addCars();
 		addTimer();
+		addTrees();
 		
 		raceTimer.startCountdown(); // access the timer from RaceTimer class
 		
@@ -79,6 +88,23 @@ public class GameScreenPane extends GraphicsPane {
 		
 		mainScreen.add(car1.getCarImage());
 		mainScreen.add(car2.getCarImage());
+	}
+	
+	public void addTrees() {
+		contents.add(tree1);
+		mainScreen.add(tree1);
+		
+		contents.add(tree2);
+		mainScreen.add(tree2);
+		
+		contents.add(tree3);
+		mainScreen.add(tree3);
+		
+		contents.add(tree4);
+		mainScreen.add(tree4);
+		
+		contents.add(tree5);
+		mainScreen.add(tree5); 
 	}
 	
 	public void moveLeftPlayer1() {
