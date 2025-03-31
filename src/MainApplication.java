@@ -45,6 +45,7 @@ public class MainApplication extends GraphicsProgram {
 		switchToScreen(welcomePane);
 	}
 	
+	
 	public static void main(String[] args) {
 		new MainApplication().start();
 

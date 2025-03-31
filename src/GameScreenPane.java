@@ -1,5 +1,8 @@
+import java.awt.Color;
+
 import acm.graphics.GImage;
 import acm.graphics.GObject;
+import acm.graphics.GLabel;
 
 public class GameScreenPane extends GraphicsPane {
 	
@@ -7,6 +10,8 @@ public class GameScreenPane extends GraphicsPane {
 	
 	private Car car1;
 	private Car car2;
+	private GLabel timer;
+	private GImage roadImage;
 	
 	public GameScreenPane(MainApplication mainScreen) {
 		this.mainScreen = mainScreen;
@@ -20,6 +25,7 @@ public class GameScreenPane extends GraphicsPane {
 		playMusic();
 		addRoad();
 		addCars();
+		addTimer();
 	}
 
 	@Override
@@ -37,12 +43,22 @@ public class GameScreenPane extends GraphicsPane {
 	
 	// adds the backdrop of the road
 	private void addRoad(){
-		GImage roadImage = new GImage("Roads.png", 200, 100);
+		roadImage = new GImage("Roads.png", 200, 100);
 		roadImage.scale(0.85, 1);
 		roadImage.setLocation((mainScreen.getWidth() - roadImage.getWidth())/ 2, 0);
 		
 		contents.add(roadImage);
 		mainScreen.add(roadImage);
+	}
+	
+	private void addTimer() {
+		timer = new GLabel("3:00", 100, 100);
+		timer.setFont("Arial-Bold-40");
+		timer.setColor(Color.blue);
+		timer.setLocation((mainScreen.getWidth() - timer.getWidth())/2, 50);
+		
+		contents.add(timer);
+		mainScreen.add(timer);
 	}
 	
 	private void addCars() {
