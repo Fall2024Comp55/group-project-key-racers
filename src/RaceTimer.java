@@ -5,28 +5,23 @@ import java.awt.event.ActionListener;
 public class RaceTimer {
 	//This is the equivalent to 3 minutes in seconds
 	private int timeLeft = 180;
-	private boolean timerRunning = false;
 	private Timer countdownTimer;
+	private GameScreenPane gameScreenPane;
 	
+	// RaceTimer can call methods on GameScreenPane
+	public RaceTimer(GameScreenPane gameScreenPane) {
+        this.gameScreenPane = gameScreenPane;
+    }
 	
 	//Race timer starts running after the 3 second count down; will add this later
 	public void startCountdown(){
-		if (timerRunning) {
-			return;
-		}
-		
-		timerRunning = true;
-		countdownTimer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (timeLeft > 0) {
-                    timeLeft--;
-                } else {
-                    stopCountdown();
-                }
+		countdownTimer = new Timer(1000, e -> {
+            timeLeft--;
+            gameScreenPane.updateTimerLabel(formatTime());
+            if (timeLeft <= 0) {
+                countdownTimer.stop();
             }
         });
-
         countdownTimer.start();
 	
 	}
@@ -43,7 +38,13 @@ public class RaceTimer {
 		if (countdownTimer != null) {
             countdownTimer.stop();
         }
-        timerRunning = false;
 	}
+	
+	// math to make the timer change between minutes and seconds
+    private String formatTime() {
+        int minutes = timeLeft / 60;
+        int seconds = timeLeft % 60;
+        return minutes + ":" + seconds;
+    }
 	
 }

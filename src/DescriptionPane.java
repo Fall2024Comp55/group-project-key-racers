@@ -49,9 +49,6 @@ public class DescriptionPane extends GraphicsPane{
 		contents.add(button);
 		mainScreen.add(button);
 		
-		
-		
-		
 	}
 	
 	

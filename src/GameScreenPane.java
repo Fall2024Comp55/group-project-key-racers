@@ -10,11 +10,13 @@ public class GameScreenPane extends GraphicsPane {
 	
 	private Car car1;
 	private Car car2;
-	private GLabel timer;
+	private GLabel timerLabel;
 	private GImage roadImage;
+	private RaceTimer raceTimer;
 	
 	public GameScreenPane(MainApplication mainScreen) {
 		this.mainScreen = mainScreen;
+		raceTimer = new RaceTimer(this);
 		car1 = new Car("RedCar.png", 200, 500, 200, 500);
 		car2 = new Car("BlueCar.png", 500, 500, 200, 500);
 		
@@ -26,6 +28,9 @@ public class GameScreenPane extends GraphicsPane {
 		addRoad();
 		addCars();
 		addTimer();
+		
+		raceTimer.startCountdown(); // access the timer from RaceTimer class
+		
 	}
 
 	@Override
@@ -45,21 +50,28 @@ public class GameScreenPane extends GraphicsPane {
 	private void addRoad(){
 		roadImage = new GImage("Roads.png", 200, 100);
 		roadImage.scale(0.85, 1);
-		roadImage.setLocation((mainScreen.getWidth() - roadImage.getWidth())/ 2, 0);
+		roadImage.setLocation((mainScreen.getWidth() - roadImage.getWidth()) / 2, 0);
 		
 		contents.add(roadImage);
 		mainScreen.add(roadImage);
 	}
 	
+	// adds timer label
 	private void addTimer() {
-		timer = new GLabel("3:00", 100, 100);
-		timer.setFont("Arial-Bold-40");
-		timer.setColor(Color.blue);
-		timer.setLocation((mainScreen.getWidth() - timer.getWidth())/2, 50);
+		timerLabel = new GLabel("3:00", 100, 100);
+		timerLabel.setFont("Arial-Bold-40");
+		timerLabel.setColor(Color.blue);
+		timerLabel.setLocation((mainScreen.getWidth() - timerLabel.getWidth()) / 2, 50);
 		
-		contents.add(timer);
-		mainScreen.add(timer);
+		contents.add(timerLabel);
+		mainScreen.add(timerLabel);
 	}
+	
+	// updates the timer label
+	public void updateTimerLabel(String newTime) {
+		timerLabel.setLabel(newTime);
+    }
+
 	
 	private void addCars() {
 		contents.add(car1.getCarImage());
