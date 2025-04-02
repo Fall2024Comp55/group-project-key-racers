@@ -7,6 +7,7 @@ import java.util.Set;
 
 public class KeyEvents extends JPanel implements KeyListener {
 	private GameScreenPane gameScreenPane;
+	private boolean keyPressed;
 	
 	
 	public KeyEvents(GameScreenPane gameScreenPane) {
@@ -17,22 +18,27 @@ public class KeyEvents extends JPanel implements KeyListener {
 	
 	 @Override
 	 public void keyPressed(KeyEvent e) {
-		 int key = e.getKeyCode();
+		 if (!keyPressed) {
+			 keyPressed = true;
+			 int key = e.getKeyCode();
 		 
-		 if (key == KeyEvent.VK_LEFT) {
-	    	 gameScreenPane.moveLeftPlayer2();
-	     } else if (key == KeyEvent.VK_RIGHT) {
-	    	 gameScreenPane.moveRightPlayer2();
-	     } else if (key == KeyEvent.VK_A) {
-	    	 gameScreenPane.moveLeftPlayer1();
-	     } else if (key == KeyEvent.VK_D){
-	    	 gameScreenPane.moveRightPlayer1();
-	     }
+			 if (key == KeyEvent.VK_LEFT) {
+				 gameScreenPane.moveLeftPlayer2();
+			 } else if (key == KeyEvent.VK_RIGHT) {
+				 gameScreenPane.moveRightPlayer2();
+			 } else if (key == KeyEvent.VK_A) {
+				 gameScreenPane.moveLeftPlayer1();
+			 } else if (key == KeyEvent.VK_D){
+				 gameScreenPane.moveRightPlayer1();
+			 }
+		 }
 		 	 
 	 }
 
 	    @Override
-	    public void keyReleased(KeyEvent e) {}
+	    public void keyReleased(KeyEvent e) {
+	    	keyPressed = false;
+	    }
 
 	    @Override
 	    public void keyTyped(KeyEvent e) {}
