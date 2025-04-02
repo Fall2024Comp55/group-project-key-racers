@@ -9,6 +9,7 @@ public class Car implements ActionListener{
 	private int speed;
 	private int originalSpeed;
 	private int positionX;
+	private int positionY;
 	private int leftBoundary;
 	private int rightBoundary;
 	private Timer t;
@@ -20,6 +21,7 @@ public class Car implements ActionListener{
 	public Car(String imagePath,int startX, int startY, int leftBoundary, int rightBoundary){
 		this.carImage = new GImage(imagePath, startX, startY);
 		this.positionX = startX;
+		this.positionY = startY;
 		this.originalSpeed = 5; // the default speed
         this.carImage.scale(0.3, 0.3); // Adjust the scale factor to fit the road
 		this.speed = originalSpeed;
@@ -32,7 +34,7 @@ public class Car implements ActionListener{
 	
 	
 	public void increaseSpeed(int speed) {
-		speed += 1;
+		speed += 5;
 	}
 	
 	//resets speed, the timer is reset to make acceleration always take a constant amount of time
@@ -42,12 +44,16 @@ public class Car implements ActionListener{
 		t = new Timer(MS, this);
 	}
 	
+	//Moves the car to the left
 	public void updateXleft() {
-		positionX -= 1;
+		positionX -= 5;
+		carImage.setLocation(positionX, positionY);
 	}
 	
+	//Moves the car to the right
 	public void updateXright() {
-		positionX += 1;
+		positionX += 5;
+		carImage.setLocation(positionX, positionY);
 	}
 	
 	//if the car gets out of bounds it should teleport to the closer boundary
@@ -57,6 +63,8 @@ public class Car implements ActionListener{
 		} else if(positionX > rightBoundary) {
 			positionX = rightBoundary;
 		}
+		
+		carImage.setLocation(positionX, positionY);
 	}
     // Returns the car's GImage object so it can be added to the game screen
 	public GImage getCarImage() {
