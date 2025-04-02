@@ -18,7 +18,7 @@ public class GameScreenPane extends GraphicsPane {
 	private GLabel timerLabel;
 	private GImage roadImage;
 	private RaceTimer raceTimer;
-	
+	private Timer roadTimer;
 	private Timer treeTimer;
 	
 	
@@ -34,7 +34,9 @@ public class GameScreenPane extends GraphicsPane {
 		tree3 = new GImage("Tree.png", 370, 200);
 		tree4 = new GImage("Tree.png", 700, 10);
 		tree5 = new GImage("Tree.png", 700, 400);
-
+		
+		// add road image
+		roadImage = new GImage("Roads.png", 200, 100);
 	}
 	
 	@Override
@@ -46,7 +48,7 @@ public class GameScreenPane extends GraphicsPane {
 		addTrees();
 		
 	    startTreeMovement(); // Start tree movement
-
+	    startRoadMovement(); // Start road movement
 		
 		raceTimer.startCountdown(); // access the timer from RaceTimer class
 		
@@ -67,9 +69,8 @@ public class GameScreenPane extends GraphicsPane {
 	
 	// adds the backdrop of the road
 	private void addRoad(){
-		roadImage = new GImage("Roads.png", 200, 100);
 		roadImage.scale(0.85, 1);
-		roadImage.setLocation((mainScreen.getWidth() - roadImage.getWidth()) / 2, 0);
+		roadImage.setLocation((mainScreen.getWidth() - roadImage.getWidth()) / 2, -100);
 		
 		contents.add(roadImage);
 		mainScreen.add(roadImage);
@@ -151,6 +152,29 @@ public class GameScreenPane extends GraphicsPane {
 	    if (tree.getY() > mainScreen.getHeight()) { //Checks if a tree has moved past the screen bottom
 	        tree.setLocation(tree.getX(), -100); // Reset tree to the top
 	    }
+	}
+	
+	// similar to tree movement function, will move downward continuously
+	public void startRoadMovement() {
+		roadTimer = new Timer();
+		roadTimer.scheduleAtFixedRate(new TimerTask() { // Runs the task every 50 milliseconds.
+	        @Override
+	        public void run() {
+	            moveRoad();
+	        }
+	    }, 0, 50); // Update every 50ms (adjust for speed)
+	}
+	
+	private void moveRoad() {
+		roadImage.move(0, raceTimer.getSpeed()); // move road downwards based on speed
+		
+		resetRoadPosition(roadImage); // Reset road if image is going off screen
+	}
+	
+	private void resetRoadPosition(GImage road) {
+		if (road.getY() > -16) {
+			road.setLocation(road.getX(), -100);
+		}
 	}
 
 
