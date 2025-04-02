@@ -33,6 +33,9 @@ public class GameScreenPane extends GraphicsPane {
 		car1 = new Car("RedCar.png", 220, 500, 124, 315);
 		car2 = new Car("BlueCar.png", 550, 500, 456, 648);
 		
+		obstacleList = new ArrayList<GImage>();
+		rgen = RandomGenerator.getInstance();
+		
 		// add trees
 		tree1 = new GImage("Tree.png", 50, 10);
 		tree2 = new GImage("Tree.png", 50, 400);
@@ -183,6 +186,35 @@ public class GameScreenPane extends GraphicsPane {
 	}
 
 
+	public void addObstacles() {
+		while(obstacleList.size() < 6) {
+			//Obstacle o = makeObstacles();
+			//obstacleList.add(o.getImage);
+			break;//for now
+		}
+		
+		for(GImage i : obstacleList) {
+			//contents.add(i);
+			//mainScreen.add(i);
+		}
+	}
+	
+	private Obstacle makeObstacles() {
+		ObstacleType ot;
+		switch(rgen.nextInt(5)) {
+		case(1):ot=ObstacleType.BONUS;
+		case(2):ot=ObstacleType.CRATE;
+		case(3):ot=ObstacleType.STICK;
+		case(4):ot=ObstacleType.STICK;
+		default:ot=ObstacleType.FALLENTREE;
+		}
+		
+		if(ot==ObstacleType.FALLENTREE) {
+			//will make the tree spawn on the left/right side of road
+			//return ...
+		}
+		return new Obstacle(ot, rgen.nextInt());
+	}
 	
 	public void moveLeftPlayer1() {
 		car1.updateXleft();
