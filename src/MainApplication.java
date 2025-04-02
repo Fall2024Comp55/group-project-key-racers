@@ -62,6 +62,7 @@ public class MainApplication extends GraphicsProgram {
 	public void switchToGameScreen() {
 		soundPlayer.stopSound();
 		switchToScreen(gameScreenPane);
+		addKeyListeners(new KeyEvents(gameScreenPane));
 	}
 	
 	
