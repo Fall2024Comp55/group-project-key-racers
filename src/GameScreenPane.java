@@ -117,10 +117,10 @@ public class GameScreenPane extends GraphicsPane {
 		mainScreen.add(tree5); 
 	}
 	
-	
+	// This function moves the trees downward continuously, making it look like the background is moving.
 	public void startTreeMovement() {
-	    treeTimer = new Timer();
-	    treeTimer.scheduleAtFixedRate(new TimerTask() {
+	    treeTimer = new Timer(); //Creates a timer that executes tasks at fixed intervals.
+	    treeTimer.scheduleAtFixedRate(new TimerTask() { // Runs the task every 50 milliseconds.
 	        @Override
 	        public void run() {
 	            moveTrees();
@@ -130,6 +130,7 @@ public class GameScreenPane extends GraphicsPane {
 
 
 	private void moveTrees() {
+		
 	    int speed = 5; // Speed of the tree movement
 
 	    // Move trees downward
@@ -148,7 +149,7 @@ public class GameScreenPane extends GraphicsPane {
 	}
 	
 	private void resetTreePosition(GImage tree) {
-	    if (tree.getY() > mainScreen.getHeight()) {
+	    if (tree.getY() > mainScreen.getHeight()) { //Checks if a tree has moved past the screen bottom
 	        tree.setLocation(tree.getX(), -100); // Reset tree to the top
 	    }
 	}
