@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class KeyEvents extends JPanel implements KeyListener {
 	private GameScreenPane gameScreenPane;
-	private boolean keyPressed;
+	private Set<Integer> keysPressed = new HashSet<>();
 	
 	
 	public KeyEvents(GameScreenPane gameScreenPane) {
@@ -18,17 +18,21 @@ public class KeyEvents extends JPanel implements KeyListener {
 	
 	 @Override
 	 public void keyPressed(KeyEvent e) {
-		 if (!keyPressed) {
-			 keyPressed = true;
-			 int key = e.getKeyCode();
+		 int key = e.getKeyCode();
+		 
+		 if (!keysPressed.contains(key)) {
+			 keysPressed.add(key);
 		 
 			 if (key == KeyEvent.VK_LEFT) {
 				 gameScreenPane.moveLeftPlayer2();
-			 } else if (key == KeyEvent.VK_RIGHT) {
+			 } 
+			 if (key == KeyEvent.VK_RIGHT) {
 				 gameScreenPane.moveRightPlayer2();
-			 } else if (key == KeyEvent.VK_A) {
+			 }
+			 if (key == KeyEvent.VK_A) {
 				 gameScreenPane.moveLeftPlayer1();
-			 } else if (key == KeyEvent.VK_D){
+			 }
+			 if (key == KeyEvent.VK_D){
 				 gameScreenPane.moveRightPlayer1();
 			 }
 		 }
@@ -37,7 +41,8 @@ public class KeyEvents extends JPanel implements KeyListener {
 
 	    @Override
 	    public void keyReleased(KeyEvent e) {
-	    	keyPressed = false;
+	    	int key = e.getKeyCode();
+	    	keysPressed.remove(key);
 	    }
 
 	    @Override
