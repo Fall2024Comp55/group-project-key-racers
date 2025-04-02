@@ -89,6 +89,7 @@ public class GameScreenPane extends GraphicsPane {
 	// updates the timer label
 	public void updateTimerLabel(String newTime) {
 		timerLabel.setLabel(newTime);
+		timerLabel.sendToFront();
     }
 
 	
