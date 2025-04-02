@@ -2,27 +2,34 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import java.util.HashSet;
+import java.util.Set;
 
 public class KeyEvents extends JPanel implements KeyListener {
+	private GameScreenPane gameScreenPane;
 	
-	public KeyEvents() {
-        setFocusable(true);
+	
+	public KeyEvents(GameScreenPane gameScreenPane) {
+        this.gameScreenPane = gameScreenPane;
+		setFocusable(true);
         addKeyListener(this);
     }
 	
 	 @Override
-	    public void keyPressed(KeyEvent e) {
-	        int key = e.getKeyCode();
-	        if (key == KeyEvent.VK_LEFT) {
-	            System.out.println("Left arrow key pressed");
-	        } else if (key == KeyEvent.VK_RIGHT) {
-	            System.out.println("Right arrow key pressed");
-	        } else if (key == KeyEvent.VK_A) {
-	           System.out.println("A key pressed");
-	        } else if (key == KeyEvent.VK_ENTER){
-	            System.out.println("Enter key pressed");
-	        }
-	    }
+	 public void keyPressed(KeyEvent e) {
+		 int key = e.getKeyCode();
+		 
+		 if (key == KeyEvent.VK_LEFT) {
+	    	 gameScreenPane.moveLeftPlayer2();
+	     } else if (key == KeyEvent.VK_RIGHT) {
+	    	 gameScreenPane.moveRightPlayer2();
+	     } else if (key == KeyEvent.VK_A) {
+	    	 gameScreenPane.moveLeftPlayer1();
+	     } else if (key == KeyEvent.VK_D){
+	    	 gameScreenPane.moveRightPlayer1();
+	     }
+		 	 
+	 }
 
 	    @Override
 	    public void keyReleased(KeyEvent e) {}
