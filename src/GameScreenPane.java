@@ -2,10 +2,12 @@ import java.awt.Color;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GLabel;
+import acm.util.RandomGenerator;
 
 
 public class GameScreenPane extends GraphicsPane {
@@ -20,6 +22,9 @@ public class GameScreenPane extends GraphicsPane {
 	private RaceTimer raceTimer;
 	private Timer roadTimer;
 	private Timer treeTimer;
+	
+	private ArrayList<GImage> obstacleList;
+	private RandomGenerator rgen;
 	
 	
 	public GameScreenPane(MainApplication mainScreen) {
