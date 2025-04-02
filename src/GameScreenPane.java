@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
@@ -18,8 +19,8 @@ public class GameScreenPane extends GraphicsPane {
 	public GameScreenPane(MainApplication mainScreen) {
 		this.mainScreen = mainScreen;
 		raceTimer = new RaceTimer(this);
-		car1 = new Car("RedCar.png", 200, 500, 200, 500);
-		car2 = new Car("BlueCar.png", 500, 500, 200, 500);
+		car1 = new Car("RedCar.png", 200, 500, 125, 315);
+		car2 = new Car("BlueCar.png", 500, 500, 460, 645);
 		
 		// add trees
 		tree1 = new GImage("Tree.png", 50, 10);
@@ -108,24 +109,35 @@ public class GameScreenPane extends GraphicsPane {
 	}
 	
 	public void moveLeftPlayer1() {
-		car1.checkBoundaries();
 		car1.updateXleft();
+		car1.checkBoundaries();
 	}
 	
 	
 	public void moveRightPlayer1() {
-		car1.checkBoundaries();
 		car1.updateXright();
+		car1.checkBoundaries();
 	}
 	
 	public void moveLeftPlayer2() {
-		car2.checkBoundaries();
 		car2.updateXleft();
+		car2.checkBoundaries();
 	}
 	
 	
 	public void moveRightPlayer2() {
-		car2.checkBoundaries();
 		car2.updateXright();
+		car2.checkBoundaries();
+	}
+	
+	public void KeyPresssed(KeyEvent e) {
+		int key = e.getKeyCode();
+		switch (key) {
+			case KeyEvent.VK_LEFT -> moveLeftPlayer2();
+			case KeyEvent.VK_RIGHT -> moveRightPlayer2();
+			case KeyEvent.VK_A -> moveLeftPlayer1();
+			case KeyEvent.VK_D -> moveRightPlayer1();
+			
+		}
 	}
 }
