@@ -6,8 +6,6 @@ import java.awt.event.*;
 
 
 public class Car implements ActionListener{
-	private int speed;
-	private int originalSpeed;
 	private int positionX;
 	private int positionY;
 	private int leftBoundary;
@@ -22,9 +20,7 @@ public class Car implements ActionListener{
 		this.carImage = new GImage(imagePath, startX, startY);
 		this.positionX = startX;
 		this.positionY = startY;
-		this.originalSpeed = 5; // the default speed
         this.carImage.scale(0.3, 0.3); // Adjust the scale factor to fit the road
-		this.speed = originalSpeed;
 		this.leftBoundary = leftBoundary;
 		this.rightBoundary = rightBoundary;
 		t = new Timer(MS, this);
@@ -32,14 +28,8 @@ public class Car implements ActionListener{
 	}
 	
 	
-	
-	public void increaseSpeed(int speed) {
-		speed += 5;
-	}
-	
 	//resets speed, the timer is reset to make acceleration always take a constant amount of time
 	public void restSpeedForStart() {
-		speed = originalSpeed;
 		t.stop();
 		t = new Timer(MS, this);
 	}
@@ -74,8 +64,5 @@ public class Car implements ActionListener{
 
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		increaseSpeed(speed);
-	}
+	public void actionPerformed(ActionEvent e) {}
 }
