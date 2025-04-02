@@ -131,15 +131,13 @@ public class GameScreenPane extends GraphicsPane {
 
 
 	private void moveTrees() {
-		
-	    int speed = 5; // Speed of the tree movement
 
 	    // Move trees downward
-	    tree1.move(0, speed);
-	    tree2.move(0, speed);
-	    tree3.move(0, speed);
-	    tree4.move(0, speed);
-	    tree5.move(0, speed);
+	    tree1.move(0, raceTimer.getSpeed());
+	    tree2.move(0, raceTimer.getSpeed());
+	    tree3.move(0, raceTimer.getSpeed());
+	    tree4.move(0, raceTimer.getSpeed());
+	    tree5.move(0, raceTimer.getSpeed());
 
 	    // Reset trees when they move past the bottom of the screen
 	    resetTreePosition(tree1);
