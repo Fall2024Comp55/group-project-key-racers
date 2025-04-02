@@ -1,8 +1,12 @@
 import java.awt.Color;
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 import acm.graphics.GLabel;
+
 
 public class GameScreenPane extends GraphicsPane {
 	
@@ -14,6 +18,9 @@ public class GameScreenPane extends GraphicsPane {
 	private GLabel timerLabel;
 	private GImage roadImage;
 	private RaceTimer raceTimer;
+	
+	private Timer treeTimer;
+	
 	
 	public GameScreenPane(MainApplication mainScreen) {
 		this.mainScreen = mainScreen;
@@ -37,6 +44,9 @@ public class GameScreenPane extends GraphicsPane {
 		addCars();
 		addTimer();
 		addTrees();
+		
+	    startTreeMovement(); // Start tree movement
+
 		
 		raceTimer.startCountdown(); // access the timer from RaceTimer class
 		
@@ -106,6 +116,44 @@ public class GameScreenPane extends GraphicsPane {
 		contents.add(tree5);
 		mainScreen.add(tree5); 
 	}
+	
+	
+	public void startTreeMovement() {
+	    treeTimer = new Timer();
+	    treeTimer.scheduleAtFixedRate(new TimerTask() {
+	        @Override
+	        public void run() {
+	            moveTrees();
+	        }
+	    }, 0, 50); // Update every 50ms (adjust for speed)
+	}
+
+
+	private void moveTrees() {
+	    int speed = 5; // Speed of the tree movement
+
+	    // Move trees downward
+	    tree1.move(0, speed);
+	    tree2.move(0, speed);
+	    tree3.move(0, speed);
+	    tree4.move(0, speed);
+	    tree5.move(0, speed);
+
+	    // Reset trees when they move past the bottom of the screen
+	    resetTreePosition(tree1);
+	    resetTreePosition(tree2);
+	    resetTreePosition(tree3);
+	    resetTreePosition(tree4);
+	    resetTreePosition(tree5);
+	}
+	
+	private void resetTreePosition(GImage tree) {
+	    if (tree.getY() > mainScreen.getHeight()) {
+	        tree.setLocation(tree.getX(), -100); // Reset tree to the top
+	    }
+	}
+
+
 	
 	public void moveLeftPlayer1() {
 		car1.checkBoundaries();
