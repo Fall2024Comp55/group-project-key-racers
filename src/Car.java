@@ -34,7 +34,7 @@ public class Car implements ActionListener{
 	
 	
 	public void increaseSpeed(int speed) {
-		speed += 1;
+		speed += 5;
 	}
 	
 	//resets speed, the timer is reset to make acceleration always take a constant amount of time
@@ -46,13 +46,13 @@ public class Car implements ActionListener{
 	
 	//Moves the car to the left
 	public void updateXleft() {
-		positionX -= 1;
+		positionX -= 5;
 		carImage.setLocation(positionX, positionY);
 	}
 	
 	//Moves the car to the right
 	public void updateXright() {
-		positionX += 1;
+		positionX += 5;
 		carImage.setLocation(positionX, positionY);
 	}
 	
