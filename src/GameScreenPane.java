@@ -25,8 +25,8 @@ public class GameScreenPane extends GraphicsPane {
 	public GameScreenPane(MainApplication mainScreen) {
 		this.mainScreen = mainScreen;
 		raceTimer = new RaceTimer(this);
-		car1 = new Car("RedCar.png", 200, 500, 124, 315);
-		car2 = new Car("BlueCar.png", 500, 500, 456, 648);
+		car1 = new Car("RedCar.png", 220, 500, 124, 315);
+		car2 = new Car("BlueCar.png", 550, 500, 456, 648);
 		
 		// add trees
 		tree1 = new GImage("Tree.png", 50, 10);
