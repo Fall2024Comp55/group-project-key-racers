@@ -30,7 +30,7 @@ public class GameScreenPane extends GraphicsPane {
 	public GameScreenPane(MainApplication mainScreen) {
 		this.mainScreen = mainScreen;
 		raceTimer = new RaceTimer(this);
-		car1 = new Car("RedCar.png", 220, 500, 124, 315);
+		car1 = new Car("RedCar.png", 220, 500, 124, 316);
 		car2 = new Car("BlueCar.png", 550, 500, 456, 648);
 		
 		obstacleList = new ArrayList<GImage>();
@@ -188,8 +188,8 @@ public class GameScreenPane extends GraphicsPane {
 
 	public void addObstacles() {
 		while(obstacleList.size() < 6) {
-			//Obstacle o = makeObstacles();
-			//obstacleList.add(o.getImage);
+			//G o = makeObstacles(objectList.size % 2 == 0);
+			//obstacleList.add(o.makeObstacle(obstacleList.size % 2 == 0));
 			break;//for now
 		}
 		
@@ -199,7 +199,9 @@ public class GameScreenPane extends GraphicsPane {
 		}
 	}
 	
-	private Obstacle makeObstacles() {
+	//Creates and places the image for each obstacle
+	private GImage makeObstacles(boolean forLeftRoad) {
+		int startXPosition = 124 + ((forLeftRoad) ? 0 : 332);
 		ObstacleType ot;
 		switch(rgen.nextInt(5)) {
 		case(1):ot=ObstacleType.BONUS;
@@ -210,10 +212,13 @@ public class GameScreenPane extends GraphicsPane {
 		}
 		
 		if(ot==ObstacleType.FALLENTREE) {
-			//will make the tree spawn on the left/right side of road
-			//return ...
+			if(forLeftRoad) {
+				return new GImage("media/MirroredFallenTree.png", startXPosition - 50, 0);
+			}
+			
+			return new GImage("media/FallenTree.png",startXPosition + 50, 0);
 		}
-		return new Obstacle(ot, rgen.nextInt());
+		return new Obstacle(ot, startXPosition + rgen.nextInt(192)).image;
 	}
 	
 	public void moveLeftPlayer1() {
