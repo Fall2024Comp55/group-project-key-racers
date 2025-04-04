@@ -28,8 +28,8 @@ public class WinScreenPane extends GraphicsPane {
 		 * GImage Winner = imageRed...
 		 */
 		GImage blueWinner = new GImage("WinScreenBlue.png", 200, 100);
-		blueWinner.scale(0.85, 0.75);
-		blueWinner.setLocation((mainScreen.getWidth() - blueWinner.getWidth())/ 2, 70);
+		blueWinner.scale(0.85, 0.85);
+		blueWinner.setLocation((mainScreen.getWidth() - blueWinner.getWidth())/ 2, 0);
 		
 		contents.add(blueWinner);
 		mainScreen.add(blueWinner);

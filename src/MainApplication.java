@@ -41,6 +41,7 @@ public class MainApplication extends GraphicsProgram {
 		welcomePane = new WelcomePane(this);
 		descriptionPane = new DescriptionPane(this);
 		gameScreenPane = new GameScreenPane(this);
+		winScreenPane = new WinScreenPane(this);
 
 		//TheDefaultPane
 		switchToScreen(welcomePane);

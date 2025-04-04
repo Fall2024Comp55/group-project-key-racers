@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 
 public class RaceTimer {
 	//This is the equivalent to 3 minutes in seconds
-	private int timeLeft = 180;
+	private int timeLeft = 5;
 	private int gameSpeed = 5;
 	private Timer countdownTimer;
 	private GameScreenPane gameScreenPane;

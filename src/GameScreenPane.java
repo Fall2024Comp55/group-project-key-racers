@@ -99,6 +99,9 @@ public class GameScreenPane extends GraphicsPane {
 	public void updateTimerLabel(String newTime) {
 		timerLabel.setLabel(newTime);
 		timerLabel.sendToFront();
+		if (raceTimer.getTimeLeft() == 0) {
+			mainScreen.switchToWinScreen();
+		}
     }
 
 	
