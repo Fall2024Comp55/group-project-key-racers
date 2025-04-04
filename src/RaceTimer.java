@@ -4,8 +4,8 @@ import java.awt.event.ActionListener;
 
 public class RaceTimer {
 	//This is the equivalent to 3 minutes in seconds
-	private int timeLeft = 5;
-	private int gameSpeed = 5;
+	private int timeLeft;
+	private int gameSpeed;
 	private Timer countdownTimer;
 	private GameScreenPane gameScreenPane;
 	
@@ -16,6 +16,8 @@ public class RaceTimer {
 	
 	//Race timer starts running after the 3 second count down; will add this later
 	public void startCountdown(){
+		timeLeft = 5;
+		gameSpeed = 5;
 		countdownTimer = new Timer(1000, e -> {
             timeLeft--;
             gameScreenPane.updateTimerLabel(formatTime());
