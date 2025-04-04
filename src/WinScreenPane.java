@@ -10,6 +10,7 @@ public class WinScreenPane extends GraphicsPane {
 	
 	@Override
 	public void showContent() {
+		addReturnTitleButton();
 		addWinnerDisplay();
 	}
 
@@ -20,6 +21,17 @@ public class WinScreenPane extends GraphicsPane {
 		}
 		contents.clear();
 	}
+	
+	private void addReturnTitleButton() {
+		GImage titleButton = new GImage("ReturnTitleButton.png", 200, 200);
+		titleButton.scale(0.5, 0.5);
+		titleButton.setLocation((mainScreen.getWidth() - titleButton.getWidth())/ 2, 215);
+		
+		contents.add(titleButton);
+		mainScreen.add(titleButton);
+
+	}
+	
 	
 	public void addWinnerDisplay() {
 		/* if (score1 > score2) this would be for the score
@@ -33,5 +45,12 @@ public class WinScreenPane extends GraphicsPane {
 		
 		contents.add(blueWinner);
 		mainScreen.add(blueWinner);
+	}
+	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(1)) {
+			mainScreen.switchToWelcomeScreen();
+		}
 	}
 }

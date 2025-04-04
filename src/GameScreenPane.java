@@ -100,6 +100,7 @@ public class GameScreenPane extends GraphicsPane {
 		timerLabel.setLabel(newTime);
 		timerLabel.sendToFront();
 		if (raceTimer.getTimeLeft() == 0) {
+			raceTimer.stopCountdown();
 			mainScreen.switchToWinScreen();
 		}
     }
