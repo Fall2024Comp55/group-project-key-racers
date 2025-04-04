@@ -22,6 +22,9 @@ public class GameScreenPane extends GraphicsPane {
 	private RaceTimer raceTimer;
 	private Timer roadTimer;
 	private Timer treeTimer;
+	private GLabel oneScore;
+	private GLabel twoScore;
+	private Scoreboard totalScore;
 	
 	private ArrayList<GImage> obstacleList;
 	private RandomGenerator rgen;
@@ -32,6 +35,7 @@ public class GameScreenPane extends GraphicsPane {
 		raceTimer = new RaceTimer(this);
 		car1 = new Car("RedCar.png", 220, 500, 124, 316);
 		car2 = new Car("BlueCar.png", 550, 500, 456, 648);
+		totalScore = new Scoreboard(this);
 		
 		obstacleList = new ArrayList<GImage>();
 		rgen = RandomGenerator.getInstance();
@@ -47,6 +51,7 @@ public class GameScreenPane extends GraphicsPane {
 		addTimer();
 		addTrees();
 		addObstacles();
+		addScoreboard();
 		
 	    startTreeMovement(); // Start tree movement
 	    startRoadMovement(); // Start road movement
@@ -259,6 +264,24 @@ public class GameScreenPane extends GraphicsPane {
 		GImage i = new GImage(name, startXPosition, 0);
 		i.scale(scale);
 		return i;
+	}
+	
+	private void addScoreboard() {
+		oneScore = new GLabel("0", 100, 100);
+		oneScore.setFont("Arial-Bold-40");
+		oneScore.setColor(Color.YELLOW);
+		oneScore.setLocation(50, 50);
+			
+		twoScore = new GLabel("0", 100, 100);
+		twoScore.setFont("Arial-Bold-40");
+		twoScore.setColor(Color.YELLOW);
+		twoScore.setLocation(725, 50);
+			
+		contents.add(oneScore);
+		contents.add(twoScore);
+			
+		mainScreen.add(oneScore);
+		mainScreen.add(twoScore);
 	}
 	
 	public void moveLeftPlayer1() {
