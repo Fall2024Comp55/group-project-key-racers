@@ -36,15 +36,7 @@ public class GameScreenPane extends GraphicsPane {
 		obstacleList = new ArrayList<GImage>();
 		rgen = RandomGenerator.getInstance();
 		
-		// add trees
-		tree1 = new GImage("Tree.png", 50, 10);
-		tree2 = new GImage("Tree.png", 50, 400);
-		tree3 = new GImage("Tree.png", 370, 200);
-		tree4 = new GImage("Tree.png", 700, 10);
-		tree5 = new GImage("Tree.png", 700, 400);
 		
-		// add road image
-		roadImage = new GImage("Roads.png", 200, 100);
 	}
 	
 	@Override
@@ -93,7 +85,8 @@ public class GameScreenPane extends GraphicsPane {
 	}
 	
 	// adds the backdrop of the road
-	private void addRoad(){
+	private void addRoad() {
+		roadImage = new GImage("Roads.png", 200, 100);
 		roadImage.scale(0.85, 1);
 		roadImage.setLocation((mainScreen.getWidth() - roadImage.getWidth()) / 2, -100);
 		
@@ -116,6 +109,10 @@ public class GameScreenPane extends GraphicsPane {
 	public void updateTimerLabel(String newTime) {
 		timerLabel.setLabel(newTime);
 		timerLabel.sendToFront();
+		if(raceTimer.getTimeLeft() == 0) {
+			raceTimer.stopCountdown();
+			mainScreen.switchToWinScreen();
+		}
     }
 
 	
@@ -128,6 +125,12 @@ public class GameScreenPane extends GraphicsPane {
 	}
 	
 	public void addTrees() {
+		tree1 = new GImage("Tree.png", 50, 10);
+		tree2 = new GImage("Tree.png", 50, 400);
+		tree3 = new GImage("Tree.png", 370, 200);
+		tree4 = new GImage("Tree.png", 700, 10);
+		tree5 = new GImage("Tree.png", 700, 400);
+		
 		contents.add(tree1);
 		mainScreen.add(tree1);
 		
@@ -157,7 +160,7 @@ public class GameScreenPane extends GraphicsPane {
 
 
 	private void moveTrees() {
-
+		
 	    // Move trees downward
 	    tree1.move(0, raceTimer.getSpeed());
 	    tree2.move(0, raceTimer.getSpeed());
