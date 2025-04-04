@@ -4,6 +4,9 @@ import acm.graphics.GImage;
 import acm.graphics.GObject;
 
 public class WinScreenPane extends GraphicsPane {
+	private SoundPlayer endMusic = new SoundPlayer();
+	
+	
 	public WinScreenPane(MainApplication mainScreen) {
 		this.mainScreen = mainScreen;
 	}
@@ -12,6 +15,7 @@ public class WinScreenPane extends GraphicsPane {
 	public void showContent() {
 		addReturnTitleButton();
 		addWinnerDisplay();
+		playMusic();
 	}
 
 	@Override
@@ -32,8 +36,7 @@ public class WinScreenPane extends GraphicsPane {
 
 	}
 	
-	
-	public void addWinnerDisplay() {
+	private void addWinnerDisplay() {
 		/* if (score1 > score2) this would be for the score
 		 * GImage Winner = imageBlue...
 		 * else 
@@ -46,6 +49,11 @@ public class WinScreenPane extends GraphicsPane {
 		contents.add(blueWinner);
 		mainScreen.add(blueWinner);
 	}
+	
+	private void playMusic() {
+		endMusic.playEndSound("media/Gameend.wav");
+	}
+	
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {

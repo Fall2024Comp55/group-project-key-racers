@@ -82,6 +82,8 @@ public class GameScreenPane extends GraphicsPane {
 	    if (raceTimer != null) {
 	        raceTimer.stopCountdown();
 	    }
+	    
+	    gameMusic.stopSound();
 	}
 	
 	// plays game music

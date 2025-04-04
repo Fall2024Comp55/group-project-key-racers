@@ -68,7 +68,6 @@ public class MainApplication extends GraphicsProgram {
 	}
 	
 	public void switchToWinScreen() {
-		soundPlayer.stopSound();
 		switchToScreen(winScreenPane);
 	}
 	
