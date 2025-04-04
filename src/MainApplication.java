@@ -15,6 +15,7 @@ public class MainApplication extends GraphicsProgram {
 	private DescriptionPane descriptionPane;
 	private GraphicsPane currentScreen;
 	private GameScreenPane gameScreenPane;
+	private WinScreenPane winScreenPane;
 	private SoundPlayer soundPlayer = new SoundPlayer();
 
 	public MainApplication() {
@@ -63,6 +64,11 @@ public class MainApplication extends GraphicsProgram {
 		soundPlayer.stopSound();
 		switchToScreen(gameScreenPane);
 		addKeyListeners(new KeyEvents(gameScreenPane));
+	}
+	
+	public void switchToWinScreen() {
+		soundPlayer.stopSound();
+		switchToScreen(winScreenPane);
 	}
 	
 	
