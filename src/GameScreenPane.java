@@ -54,6 +54,7 @@ public class GameScreenPane extends GraphicsPane {
 		addCars();
 		addTimer();
 		addTrees();
+		addObstacles();
 		
 	    startTreeMovement(); // Start tree movement
 	    startRoadMovement(); // Start road movement
@@ -99,10 +100,6 @@ public class GameScreenPane extends GraphicsPane {
 	public void updateTimerLabel(String newTime) {
 		timerLabel.setLabel(newTime);
 		timerLabel.sendToFront();
-		if (raceTimer.getTimeLeft() == 0) {
-			raceTimer.stopCountdown();
-			mainScreen.switchToWinScreen();
-		}
     }
 
 	
@@ -192,37 +189,56 @@ public class GameScreenPane extends GraphicsPane {
 
 	public void addObstacles() {
 		while(obstacleList.size() < 6) {
-			//G o = makeObstacles(objectList.size % 2 == 0);
-			//obstacleList.add(o.makeObstacle(obstacleList.size % 2 == 0));
-			break;//for now
+			obstacleList.add(makeObstacles(obstacleList.size() % 2 == 0));
 		}
 		
 		for(GImage i : obstacleList) {
-			//contents.add(i);
-			//mainScreen.add(i);
+			contents.add(i);
+			mainScreen.add(i);
 		}
 	}
 	
 	//Creates and places the image for each obstacle
 	private GImage makeObstacles(boolean forLeftRoad) {
 		int startXPosition = 124 + ((forLeftRoad) ? 0 : 332);
-		ObstacleType ot;
-		switch(rgen.nextInt(5)) {
-		case(1):ot=ObstacleType.BONUS;
-		case(2):ot=ObstacleType.CRATE;
-		case(3):ot=ObstacleType.STICK;
-		case(4):ot=ObstacleType.STICK;
-		default:ot=ObstacleType.FALLENTREE;
+		String name = "media/";
+		int r = rgen.nextInt(0,5);
+		double scale = 1;
+		System.out.println(r);
+		
+		//to fix other scaling
+		if(r == 0) {
+			if(forLeftRoad) {
+				name+="Mirrored";
+			}
+			name+="FallenTree.png";
+			scale = .4;
+		}else if(r == 1) {
+			name+="BonusItem.png";
+			scale = .4;
+		}else if(r == 2) {
+			name+="Crate.png";
+			scale = .4;
+		}else if(r == 3) {
+			name+="Stick.png";
+			scale = .4;
+		}else {
+			name+="Stone.png";
+			scale = .4;
 		}
 		
-		if(ot==ObstacleType.FALLENTREE) {
+		if(r != 0) {
+			startXPosition += rgen.nextInt(192);
+		} else {
 			if(forLeftRoad) {
-				return new GImage("media/MirroredFallenTree.png", startXPosition - 50, 0);
+				startXPosition -= 270;
+			}else {
+				startXPosition += 50;
 			}
-			
-			return new GImage("media/FallenTree.png",startXPosition + 50, 0);
 		}
-		return new Obstacle(ot, startXPosition + rgen.nextInt(192)).image;
+		GImage i = new GImage(name, startXPosition, 0);
+		i.scale(scale);
+		return i;
 	}
 	
 	public void moveLeftPlayer1() {
