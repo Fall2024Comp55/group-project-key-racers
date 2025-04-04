@@ -69,6 +69,22 @@ public class GameScreenPane extends GraphicsPane {
 			mainScreen.remove(item);
 		}
 		contents.clear();
+		
+		if (roadTimer != null) {
+	        roadTimer.cancel();
+	        roadTimer.purge();
+	        roadTimer = null;
+	    }
+	    
+	    if (treeTimer != null) {
+	        treeTimer.cancel();
+	        treeTimer.purge();
+	        treeTimer = null;
+	    }
+	    
+	    if (raceTimer != null) {
+	        raceTimer.stopCountdown();
+	    }
 	}
 	
 	// plays game music
