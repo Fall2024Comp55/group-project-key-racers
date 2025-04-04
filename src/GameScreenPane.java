@@ -223,6 +223,7 @@ public class GameScreenPane extends GraphicsPane {
 		System.out.println(r);
 		
 		//to fix other scaling
+		
 		if(r == 0) {
 			if(forLeftRoad) {
 				name+="Mirrored";
