@@ -3,6 +3,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Random;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
@@ -28,6 +29,8 @@ public class GameScreenPane extends GraphicsPane {
 	
 	private ArrayList<GImage> obstacleList;
 	private RandomGenerator rgen;
+	
+	private Random rand = new Random();
 	
 	
 	public GameScreenPane(MainApplication mainScreen) {
@@ -185,7 +188,8 @@ public class GameScreenPane extends GraphicsPane {
 	
 	private void resetTreePosition(GImage tree) {
 	    if (tree.getY() > mainScreen.getHeight()) { //Checks if a tree has moved past the screen bottom
-	        tree.setLocation(tree.getX(), -100); // Reset tree to the top
+	    	int randomY = rand.nextInt(200) - 300;
+	        tree.setLocation(tree.getX(), randomY); // Reset tree to the top
 	    }
 	}
 	
