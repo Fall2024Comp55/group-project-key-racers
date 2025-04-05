@@ -30,7 +30,7 @@ public class GameScreenPane extends GraphicsPane {
 	private ArrayList<GImage> obstacleList;
 	private RandomGenerator rgen;
 	
-	private Random rand = new Random();
+	private Random rand = new Random(); //// Create a random number generator for the trees
 	
 	
 	public GameScreenPane(MainApplication mainScreen) {
@@ -188,8 +188,8 @@ public class GameScreenPane extends GraphicsPane {
 	
 	private void resetTreePosition(GImage tree) {
 	    if (tree.getY() > mainScreen.getHeight()) { //Checks if a tree has moved past the screen bottom
-	    	int randomY = rand.nextInt(200) - 300;
-	        tree.setLocation(tree.getX(), randomY); // Reset tree to the top
+	    	int randomY = rand.nextInt(200) - 300; // Generates a random Y between -300 and -100
+	        tree.setLocation(tree.getX(), randomY); //// Reset tree at a random Y above the screen
 	    }
 	}
 	
