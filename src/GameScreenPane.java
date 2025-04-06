@@ -272,6 +272,25 @@ public class GameScreenPane extends GraphicsPane {
 		return i;
 	}
 	
+	public void startObstacleMovement() {
+		
+	}
+	
+	private void moveObstacles() {
+		for(GImage obstacle : obstacleList) {
+			obstacle.move(0, raceTimer.getSpeed());
+		}
+		for(GImage obstacle : obstacleList) {
+			resetObstaclePosition(obstacle);
+		}
+	}
+	
+	private void resetObstaclePosition(GImage obstacle) {
+		if(obstacle.getY() > obstacle.getHeight() + 600) {
+			obstacle = makeObstacles(obstacle.getX() < 300);
+		}
+	}
+	
 	private void addScoreboard() {
 		oneScore = new GLabel("0", 100, 100);
 		oneScore.setFont("Arial-Bold-40");
