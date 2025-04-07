@@ -2,7 +2,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Scoreboard {
-	private int playerScoreboard = 0;
+	private int playerScoreboard;
 	private int points;
 	private GameScreenPane gameScreenPane;
 	
@@ -11,29 +11,25 @@ public class Scoreboard {
         this.gameScreenPane = gameScreenPane;
     }
 	
+	//Resets both players score to zero as the game starts
 	public void startScore() {
+		playerScoreboard = 0;
 		
 	}
 	
 	//Increase points when bonus are hit
 	public void increasePoints() {
-		
+		playerScoreboard += 1;
 	}
 	
 	//Decrease points when obstacles are hit
 	public void decreasePoints() {
-		
+		playerScoreboard -= 1;
 	}
 	
-	public void updateScore() {
-		playerScoreboard += points;
+	//Updates the score at the GameScreen class
+	public int updateScore() {
+		return playerScoreboard;
 	}
 
-	
-	
-	//Reveal on winner at the end of the game
-	public void getWinner() {
-		
-	}
-	
 }
