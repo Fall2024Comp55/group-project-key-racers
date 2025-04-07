@@ -30,10 +30,12 @@ public class GameScreenPane extends GraphicsPane {
 	private ArrayList<GImage> obstacleList;
 	private RandomGenerator rgen;
 	private Timer obstacleTimer;
+	//increments until enough time has passed since the previous obstacle spawned
 	private int obstacleSpawnTimer;
 	
 	private Random rand = new Random(); //// Create a random number generator for the trees
 	
+	private Timer universalTimer;
 	
 	public GameScreenPane(MainApplication mainScreen) {
 		this.mainScreen = mainScreen;
@@ -59,9 +61,10 @@ public class GameScreenPane extends GraphicsPane {
 		//addObstacles();
 		addScoreboard();
 		
-	    startTreeMovement(); // Start tree movement
+	    /*startTreeMovement(); // Start tree movement
 	    startRoadMovement(); // Start road movement
-	    startObstacleMovement();
+	    startObstacleMovement();*/
+		startUniversalTimer();
 		
 		raceTimer.startCountdown(); // access the timer from RaceTimer class
 		
@@ -104,6 +107,35 @@ public class GameScreenPane extends GraphicsPane {
 		gameMusic.playSound("media/Gamesound.wav");
 	}
 	
+	public void startUniversalTimer() {
+		universalTimer = new Timer();
+		universalTimer.scheduleAtFixedRate(new TimerTask() {
+			@Override
+			public void run() {
+				moveRoad();
+				moveTrees();
+				moveObstacles();
+				//checkCollision();
+				if(obstacleList.size() < 5) {
+					if(obstacleSpawnTimer >= 50) {
+						GImage i = makeObstacles(true);
+						obstacleList.add(i);
+						contents.add(i);
+						mainScreen.add(i);
+						
+						GImage i2 = makeObstacles(false);
+						obstacleList.add(i2);
+						contents.add(i2);
+						mainScreen.add(i2);
+						
+						obstacleSpawnTimer = 0;
+					}
+					obstacleSpawnTimer++;
+				}
+			}
+		}, 0, 50);
+	}
+	
 	// adds the backdrop of the road
 	private void addRoad() {
 		roadImage = new GImage("Roads.png", 200, 100);
@@ -135,7 +167,6 @@ public class GameScreenPane extends GraphicsPane {
 		}
     }
 
-	
 	private void addCars() {
 		contents.add(car1.getCarImage());
 		contents.add(car2.getCarImage());
@@ -177,7 +208,6 @@ public class GameScreenPane extends GraphicsPane {
 	        }
 	    }, 0, 50); // Update every 50ms (adjust for speed)
 	}
-
 
 	private void moveTrees() {
 		
@@ -226,7 +256,7 @@ public class GameScreenPane extends GraphicsPane {
 		}
 	}
 
-
+	//removed
 	public void addObstacles() {
 		while(obstacleList.size() < 6) {
 			obstacleList.add(makeObstacles(obstacleList.size() % 2 == 0));
@@ -288,7 +318,7 @@ public class GameScreenPane extends GraphicsPane {
 	        @Override
 	        public void run() {
 	        	if(obstacleList.size() < 6) {
-	        		if(obstacleSpawnTimer > 50) {
+	        		if(obstacleSpawnTimer > 50 && obstacleList.size() < 5) {
 		        		GImage o = makeObstacles(true);
 		        		contents.add(o);
 		        		mainScreen.add(o);
@@ -298,6 +328,8 @@ public class GameScreenPane extends GraphicsPane {
 		        		mainScreen.add(o1);
 		        		obstacleList.add(o1);
 		        		obstacleSpawnTimer = 0;
+	        		} else if(obstacleList.size() < 4) {
+	        			//GImage o = makeObstacle
 	        		}
 	        		obstacleSpawnTimer++;
 	        	}
@@ -306,18 +338,33 @@ public class GameScreenPane extends GraphicsPane {
 	    }, 0, 50); // Update every 50ms (adjust for speed)
 	}
 	
+	//made more sense to separate the movement and placing at the top
 	private void moveObstacles() {
 		for(GImage obstacle : obstacleList) {
 			obstacle.move(0, raceTimer.getSpeed());
 		}
-		for(GImage obstacle : obstacleList) {
-			resetObstaclePosition(obstacle);
+		for(int i = 0; i < obstacleList.size(); i++) {
+			resetObstaclePosition(obstacleList.get(i));
 		}
+		/*if(obstacleList.size() < 5) {
+			GImage i = makeObstacles(true);
+			obstacleList.add(i);
+			contents.add(i);
+			mainScreen.add(i);
+			GImage i2 = makeObstacles(false);
+			obstacleList.add(i2);
+			contents.add(i2);
+			mainScreen.add(i2);
+		}*/
 	}
 	
 	private void resetObstaclePosition(GImage obstacle) {
-		if(obstacle.getY() > obstacle.getHeight() + 600) {
-			obstacle = makeObstacles(obstacle.getX() < 300);
+		if(obstacle.getY() > mainScreen.getHeight()) {
+			//obstacle = makeObstacles(obstacle.getX() < 300);
+			//obstacleList.set(i, makeObstacles(obstacle.getX() < 300));
+			obstacleList.remove(obstacle);
+			contents.remove(obstacle);
+			mainScreen.remove(obstacle);
 		}
 	}
 	
@@ -343,8 +390,7 @@ public class GameScreenPane extends GraphicsPane {
 		car1.updateXleft();
 		car1.checkBoundaries();
 	}
-	
-	
+		
 	public void moveRightPlayer1() {
 		car1.updateXright();
 		car1.checkBoundaries();
@@ -354,8 +400,7 @@ public class GameScreenPane extends GraphicsPane {
 		car2.updateXleft();
 		car2.checkBoundaries();
 	}
-	
-	
+		
 	public void moveRightPlayer2() {
 		car2.updateXright();
 		car2.checkBoundaries();
