@@ -15,6 +15,16 @@ public class Scoreboard {
 		
 	}
 	
+	//Increase points when bonus are hit
+	public void increasePoints() {
+		
+	}
+	
+	//Decrease points when obstacles are hit
+	public void decreasePoints() {
+		
+	}
+	
 	public void updateScore() {
 		playerScoreboard += points;
 	}
