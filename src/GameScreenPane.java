@@ -29,6 +29,8 @@ public class GameScreenPane extends GraphicsPane {
 	
 	private ArrayList<GImage> obstacleList;
 	private RandomGenerator rgen;
+	private Timer obstacleTimer;
+	private int obstacleSpawnTimer;
 	
 	private Random rand = new Random(); //// Create a random number generator for the trees
 	
@@ -42,6 +44,7 @@ public class GameScreenPane extends GraphicsPane {
 		
 		obstacleList = new ArrayList<GImage>();
 		rgen = RandomGenerator.getInstance();
+		obstacleSpawnTimer = 0;
 		
 		
 	}
@@ -53,11 +56,12 @@ public class GameScreenPane extends GraphicsPane {
 		addCars();
 		addTimer();
 		addTrees();
-		addObstacles();
+		//addObstacles();
 		addScoreboard();
 		
 	    startTreeMovement(); // Start tree movement
 	    startRoadMovement(); // Start road movement
+	    startObstacleMovement();
 		
 		raceTimer.startCountdown(); // access the timer from RaceTimer class
 		
@@ -80,6 +84,12 @@ public class GameScreenPane extends GraphicsPane {
 	        treeTimer.cancel();
 	        treeTimer.purge();
 	        treeTimer = null;
+	    }
+	    
+	    if(obstacleTimer != null) {
+	    	obstacleTimer.cancel();
+	    	obstacleTimer.purge();
+	    	obstacleTimer = null;
 	    }
 	    
 	    if (raceTimer != null) {
@@ -273,7 +283,27 @@ public class GameScreenPane extends GraphicsPane {
 	}
 	
 	public void startObstacleMovement() {
-		
+		obstacleTimer = new Timer();
+		obstacleTimer.scheduleAtFixedRate(new TimerTask() { // Runs the task every 50 milliseconds.
+	        @Override
+	        public void run() {
+	        	if(obstacleList.size() < 6) {
+	        		if(obstacleSpawnTimer > 50) {
+		        		GImage o = makeObstacles(true);
+		        		contents.add(o);
+		        		mainScreen.add(o);
+		        		obstacleList.add(o);
+		        		GImage o1 = makeObstacles(false);
+		        		contents.add(o1);
+		        		mainScreen.add(o1);
+		        		obstacleList.add(o1);
+		        		obstacleSpawnTimer = 0;
+	        		}
+	        		obstacleSpawnTimer++;
+	        	}
+	            moveObstacles();
+	        }
+	    }, 0, 50); // Update every 50ms (adjust for speed)
 	}
 	
 	private void moveObstacles() {
