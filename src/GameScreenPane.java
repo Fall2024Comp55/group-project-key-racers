@@ -115,7 +115,7 @@ public class GameScreenPane extends GraphicsPane {
 				moveRoad();
 				moveTrees();
 				moveObstacles();
-				//checkCollision();
+				checkCollision();
 				if(obstacleList.size() < 5) {
 					if(obstacleSpawnTimer >= 50) {
 						GImage i = makeObstacles(true);
@@ -384,6 +384,22 @@ public class GameScreenPane extends GraphicsPane {
 			
 		mainScreen.add(oneScore);
 		mainScreen.add(twoScore);
+	}
+	
+	// checks if the car is touching an obstacle
+	public void checkCollision() {
+		for (int i = 0; i < obstacleList.size(); i++) {
+	        GImage obstacle = obstacleList.get(i);
+	        
+	        if (car1.getCarImage().getBounds().intersects(obstacle.getBounds()) || 
+	            car2.getCarImage().getBounds().intersects(obstacle.getBounds())) {
+	            
+	            // Remove the obstacle
+	            obstacleList.remove(obstacle);
+	            contents.remove(obstacle);
+	            mainScreen.remove(obstacle);
+	        }
+	    }
 	}
 	
 	public void moveLeftPlayer1() {
