@@ -177,8 +177,9 @@ public class GameScreenPane extends GraphicsPane {
 	
 	public void addTrees() {
 		
-		Random rand = new Random();
+		Random rand = new Random(); // // Create a random number generator for tree scaling
 		
+		// Create and scale each tree with a random size between 0.6x and 1.2x
 		tree1 = new GImage("Tree.png", 50, 10);
 		tree1.scale(getRandomScale(rand));
 		
@@ -210,6 +211,8 @@ public class GameScreenPane extends GraphicsPane {
 		mainScreen.add(tree5); 
 	}
 	
+	
+	// Returns a random scale factor between 0.6 and 1.2 to vary tree sizes. 
 	private double getRandomScale(Random rand) {
 		return 0.6 + (1.2 - 0.6) * rand.nextDouble(); 
 	}
