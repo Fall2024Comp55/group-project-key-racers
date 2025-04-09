@@ -176,11 +176,23 @@ public class GameScreenPane extends GraphicsPane {
 	}
 	
 	public void addTrees() {
+		
+		Random rand = new Random();
+		
 		tree1 = new GImage("Tree.png", 50, 10);
+		tree1.scale(getRandomScale(rand));
+		
 		tree2 = new GImage("Tree.png", 50, 400);
+		tree2.scale(getRandomScale(rand));
+		
 		tree3 = new GImage("Tree.png", 370, 200);
+		tree3.scale(getRandomScale(rand));
+		
 		tree4 = new GImage("Tree.png", 700, 10);
+		tree4.scale(getRandomScale(rand));
+		
 		tree5 = new GImage("Tree.png", 700, 400);
+		tree5.scale(getRandomScale(rand));
 		
 		contents.add(tree1);
 		mainScreen.add(tree1);
@@ -196,6 +208,10 @@ public class GameScreenPane extends GraphicsPane {
 		
 		contents.add(tree5);
 		mainScreen.add(tree5); 
+	}
+	
+	private double getRandomScale(Random rand) {
+		return 0.6 + (1.2 - 0.6) * rand.nextDouble(); 
 	}
 	
 	// This function moves the trees downward continuously, making it look like the background is moving.
