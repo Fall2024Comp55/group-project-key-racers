@@ -25,7 +25,9 @@ public class GameScreenPane extends GraphicsPane {
 	private Timer treeTimer;
 	private GLabel oneScore;
 	private GLabel twoScore;
-	private Scoreboard totalScore;
+	private Scoreboard player1Score;
+	private Scoreboard player2Score;
+	
 	
 	private ArrayList<GImage> obstacleList;
 	private RandomGenerator rgen;
@@ -42,7 +44,8 @@ public class GameScreenPane extends GraphicsPane {
 		raceTimer = new RaceTimer(this);
 		car1 = new Car("RedCar.png", 220, 500, 124, 316);
 		car2 = new Car("BlueCar.png", 550, 500, 456, 648);
-		totalScore = new Scoreboard(this);
+		player1Score = new Scoreboard(this);
+		player2Score = new Scoreboard(this);
 		
 		obstacleList = new ArrayList<GImage>();
 		rgen = RandomGenerator.getInstance();
@@ -406,24 +409,29 @@ public class GameScreenPane extends GraphicsPane {
 	}
 	
 	// checks if the car is touching an obstacle
-	public void checkCollision() {
-		for (int i = 0; i < obstacleList.size(); i++) {
-	        GImage obstacle = obstacleList.get(i);
-	        
-	        if (car1.getCarImage().getBounds().intersects(obstacle.getBounds())) {
-	            
-	            obstacleList.remove(obstacle);
-	            contents.remove(obstacle);
-	            mainScreen.remove(obstacle);
-	        }
-	        
-	        if (car2.getCarImage().getBounds().intersects(obstacle.getBounds())) {
-	        	obstacleList.remove(obstacle);
-	            contents.remove(obstacle);
-	            mainScreen.remove(obstacle);
-	        }
-	    }
-	}
+		public void checkCollision() {
+			for (int i = 0; i < obstacleList.size(); i++) {
+		        GImage obstacle = obstacleList.get(i);
+		        
+		        if (car1.getCarImage().getBounds().intersects(obstacle.getBounds())) {
+		        	player1Score.obstacleMinusPoints();
+		        	oneScore.setLabel(player1Score.scoreFormat());
+		        	
+		            obstacleList.remove(obstacle);
+		            contents.remove(obstacle);
+		            mainScreen.remove(obstacle);
+		        }
+		        
+		        if (car2.getCarImage().getBounds().intersects(obstacle.getBounds())) {
+		        	player2Score.obstacleMinusPoints();
+		        	twoScore.setLabel(player2Score.scoreFormat());
+		        	
+		        	obstacleList.remove(obstacle);
+		            contents.remove(obstacle);
+		            mainScreen.remove(obstacle);
+		        }
+		    }
+		}
 	
 	public void moveLeftPlayer1() {
 		car1.updateXleft();

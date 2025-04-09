@@ -32,9 +32,13 @@ public class Scoreboard {
 		playerScoreboard += 100;
 	}
 	
-	// Minus Points for hitting obstalces
+	// Minus Points for hitting obstacles
 	public void obstacleMinusPoints() {
 		playerScoreboard -= 100;
+	}
+	
+	public String scoreFormat() {
+		return "" + playerScoreboard;
 	}
 	
 	//Updates the score at the GameScreen class
