@@ -413,7 +413,6 @@ public class GameScreenPane extends GraphicsPane {
 	        if (car1.getCarImage().getBounds().intersects(obstacle.getBounds()) || 
 	            car2.getCarImage().getBounds().intersects(obstacle.getBounds())) {
 	            
-	            // Remove the obstacle
 	            obstacleList.remove(obstacle);
 	            contents.remove(obstacle);
 	            mainScreen.remove(obstacle);
