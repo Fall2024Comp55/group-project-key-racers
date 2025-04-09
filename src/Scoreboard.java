@@ -27,6 +27,16 @@ public class Scoreboard {
 		playerScoreboard -= 1;
 	}
 	
+	// Points for bonus item
+	public void bonusPoints() {
+		playerScoreboard += 100;
+	}
+	
+	// Minus Points for hitting obstalces
+	public void obstacleMinusPoints() {
+		playerScoreboard -= 100;
+	}
+	
 	//Updates the score at the GameScreen class
 	public int updateScore() {
 		return playerScoreboard;

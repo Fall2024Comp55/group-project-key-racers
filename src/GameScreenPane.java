@@ -410,10 +410,15 @@ public class GameScreenPane extends GraphicsPane {
 		for (int i = 0; i < obstacleList.size(); i++) {
 	        GImage obstacle = obstacleList.get(i);
 	        
-	        if (car1.getCarImage().getBounds().intersects(obstacle.getBounds()) || 
-	            car2.getCarImage().getBounds().intersects(obstacle.getBounds())) {
+	        if (car1.getCarImage().getBounds().intersects(obstacle.getBounds())) {
 	            
 	            obstacleList.remove(obstacle);
+	            contents.remove(obstacle);
+	            mainScreen.remove(obstacle);
+	        }
+	        
+	        if (car2.getCarImage().getBounds().intersects(obstacle.getBounds())) {
+	        	obstacleList.remove(obstacle);
 	            contents.remove(obstacle);
 	            mainScreen.remove(obstacle);
 	        }
