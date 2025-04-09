@@ -118,12 +118,13 @@ public class GameScreenPane extends GraphicsPane {
 				checkCollision();
 				if(obstacleList.size() < 5) {
 					if(obstacleSpawnTimer >= 50) {
-						GImage i = makeObstacles(true);
+						int num = rgen.nextInt(0,5);
+						GImage i = makeObstacles(num, true);
 						obstacleList.add(i);
 						contents.add(i);
 						mainScreen.add(i);
 						
-						GImage i2 = makeObstacles(false);
+						GImage i2 = makeObstacles(num, false);
 						obstacleList.add(i2);
 						contents.add(i2);
 						mainScreen.add(i2);
@@ -211,7 +212,6 @@ public class GameScreenPane extends GraphicsPane {
 		mainScreen.add(tree5); 
 	}
 	
-	
 	// Returns a random scale factor between 0.6 and 1.2 to vary tree sizes. 
 	private double getRandomScale(Random rand) {
 		return 0.6 + (1.2 - 0.6) * rand.nextDouble(); 
@@ -276,7 +276,7 @@ public class GameScreenPane extends GraphicsPane {
 	}
 
 	//removed
-	public void addObstacles() {
+	/*public void addObstacles() {
 		while(obstacleList.size() < 6) {
 			obstacleList.add(makeObstacles(obstacleList.size() % 2 == 0));
 		}
@@ -285,15 +285,15 @@ public class GameScreenPane extends GraphicsPane {
 			contents.add(i);
 			mainScreen.add(i);
 		}
-	}
+	}*/
 	
 	//Creates and places the image for each obstacle
-	private GImage makeObstacles(boolean forLeftRoad) {
+	private GImage makeObstacles(int r, boolean forLeftRoad) {
 		int startXPosition = 124 + ((forLeftRoad) ? 0 : 332);
 		String name = "media/";
-		int r = rgen.nextInt(0,5);
+		//int r = rgen.nextInt(0,5);
 		double scale = 1;
-		System.out.println(r);
+		//System.out.println(r);
 		
 		//to fix other scaling
 		
@@ -331,7 +331,7 @@ public class GameScreenPane extends GraphicsPane {
 		return i;
 	}
 	
-	public void startObstacleMovement() {
+	/*public void startObstacleMovement() {
 		obstacleTimer = new Timer();
 		obstacleTimer.scheduleAtFixedRate(new TimerTask() { // Runs the task every 50 milliseconds.
 	        @Override
@@ -355,7 +355,7 @@ public class GameScreenPane extends GraphicsPane {
 	            moveObstacles();
 	        }
 	    }, 0, 50); // Update every 50ms (adjust for speed)
-	}
+	}*/
 	
 	//made more sense to separate the movement and placing at the top
 	private void moveObstacles() {
