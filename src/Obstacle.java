@@ -20,6 +20,11 @@ public class Obstacle{
 		image = new GImage(s, positionX, positionY);
 	}
 	
+	// returns the image
+	public GImage getImage() {
+	    return image;
+	}
+	
 	public ObstacleType getObstacleType() {
         return this.oType;
     }

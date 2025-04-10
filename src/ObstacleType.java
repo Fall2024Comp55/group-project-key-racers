@@ -3,7 +3,7 @@ public enum ObstacleType {
 	
 	public String toString() {
 		switch(this) {
-			case BONUS: return "Bonus";
+			case BONUS: return "BonusItem";
 			case CRATE: return "Crate";
 			case FALLENTREE: return "FallenTree";
 			case STICK: return "Stick";

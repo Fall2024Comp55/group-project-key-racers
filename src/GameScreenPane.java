@@ -28,7 +28,8 @@ public class GameScreenPane extends GraphicsPane {
 	private Scoreboard player1Score;
 	private Scoreboard player2Score;
 	
-	private ArrayList<GImage> obstacleList;
+	
+	private ArrayList<Obstacle> obstacleList;
 	private RandomGenerator rgen;
 	private Timer obstacleTimer;
 	//increments until enough time has passed since the previous obstacle spawned
@@ -46,7 +47,7 @@ public class GameScreenPane extends GraphicsPane {
 		player1Score = new Scoreboard(this);
 		player2Score = new Scoreboard(this);
 		
-		obstacleList = new ArrayList<GImage>();
+		obstacleList = new ArrayList<Obstacle>();
 		rgen = RandomGenerator.getInstance();
 		obstacleSpawnTimer = 0;
 		
@@ -120,18 +121,18 @@ public class GameScreenPane extends GraphicsPane {
 				checkCollision();
 				if(obstacleList.size() < 5) {
 					if(obstacleSpawnTimer >= 50) {
-						int num = rgen.nextInt(0,5);
-						GImage i = makeObstacles(num, true);
-						obstacleList.add(i);
-						contents.add(i);
-						mainScreen.add(i);
-						
-						GImage i2 = makeObstacles(num, false);
-						obstacleList.add(i2);
-						contents.add(i2);
-						mainScreen.add(i2);
-						
-						obstacleSpawnTimer = 0;
+						int num = rgen.nextInt(0, 5);
+	                    Obstacle obstacle1 = makeObstacle(num, true);
+	                    obstacleList.add(obstacle1);
+	                    contents.add(obstacle1.getImage());  // Add the GImage to the screen
+	                    mainScreen.add(obstacle1.getImage()); // Add to the main screen
+
+	                    Obstacle obstacle2 = makeObstacle(num, false);
+	                    obstacleList.add(obstacle2);
+	                    contents.add(obstacle2.getImage());
+	                    mainScreen.add(obstacle2.getImage());
+
+	                    obstacleSpawnTimer = 0;
 					}
 					obstacleSpawnTimer++;
 				}
@@ -290,7 +291,7 @@ public class GameScreenPane extends GraphicsPane {
 	}*/
 	
 	//Creates and places the image for each obstacle
-	private GImage makeObstacles(int r, boolean forLeftRoad) {
+	private Obstacle makeObstacle(int r, boolean forLeftRoad) {
 		int startXPosition = 124 + ((forLeftRoad) ? 0 : 332);
 		String name = "media/";
 		//int r = rgen.nextInt(0,5);
@@ -298,39 +299,43 @@ public class GameScreenPane extends GraphicsPane {
 		//System.out.println(r);
 		
 		//to fix other scaling
+		ObstacleType obstacleType;
 		
-		if(r == 0) {
-			if(forLeftRoad) {
-				name+="Mirrored";
-			}
-			name+="FallenTree.png";
-			scale = .4;
-		}else if(r == 1) {
-			name+="BonusItem.png";
-			scale = .4;
-		}else if(r == 2) {
-			name+="Crate.png";
-			scale = .4;
-		}else if(r == 3) {
-			name+="Stick.png";
-			scale = .4;
-		}else {
-			name+="Stone.png";
-			scale = .4;
-		}
+		if (r == 0) {
+	        obstacleType = ObstacleType.FALLENTREE;
+	        name += "FallenTree.png";
+	        scale = .4;
+	    } else if (r == 1) {
+	        obstacleType = ObstacleType.BONUS;
+	        name += "BonusItem.png";
+	        scale = .4;
+	    } else if (r == 2) {
+	        obstacleType = ObstacleType.CRATE;
+	        name += "Crate.png";
+	        scale = .4;
+	    } else if (r == 3) {
+	        obstacleType = ObstacleType.STICK;
+	        name += "Stick.png";
+	        scale = .4;
+	    } else {
+	        obstacleType = ObstacleType.STONE;
+	        name += "Stone.png";
+	        scale = .4;
+	    }
 		
-		if(r != 0) {
-			startXPosition += rgen.nextInt(192);
-		} else {
-			if(forLeftRoad) {
-				startXPosition -= 270;
-			}else {
-				startXPosition += 50;
-			}
-		}
-		GImage i = new GImage(name, startXPosition, 0);
-		i.scale(scale);
-		return i;
+		if (r != 0) {
+	        startXPosition += rgen.nextInt(192);
+	    } else {
+	        if (forLeftRoad) {
+	            startXPosition -= 270;
+	        } else {
+	            startXPosition += 50;
+	        }
+	    }
+		
+		Obstacle obstacle = new Obstacle(obstacleType, startXPosition);
+	    obstacle.spawn();
+	    return obstacle;
 	}
 	
 	/*public void startObstacleMovement() {
@@ -361,11 +366,12 @@ public class GameScreenPane extends GraphicsPane {
 	
 	//made more sense to separate the movement and placing at the top
 	private void moveObstacles() {
-		for(GImage obstacle : obstacleList) {
-			obstacle.move(0, raceTimer.getSpeed());
+		for(Obstacle obstacle : obstacleList) {
+			obstacle.getImage().move(0, raceTimer.getSpeed());
 		}
-		for(int i = 0; i < obstacleList.size(); i++) {
-			resetObstaclePosition(obstacleList.get(i));
+		
+		for(Obstacle obstacle : obstacleList) {
+			resetObstaclePosition(obstacle);
 		}
 		/*if(obstacleList.size() < 5) {
 			GImage i = makeObstacles(true);
@@ -379,13 +385,13 @@ public class GameScreenPane extends GraphicsPane {
 		}*/
 	}
 	
-	private void resetObstaclePosition(GImage obstacle) {
-		if(obstacle.getY() > mainScreen.getHeight()) {
+	private void resetObstaclePosition(Obstacle obstacle) {
+		if(obstacle.getImage().getY() > mainScreen.getHeight()) {
 			//obstacle = makeObstacles(obstacle.getX() < 300);
 			//obstacleList.set(i, makeObstacles(obstacle.getX() < 300));
 			obstacleList.remove(obstacle);
-			contents.remove(obstacle);
-			mainScreen.remove(obstacle);
+			contents.remove(obstacle.getImage());
+			mainScreen.remove(obstacle.getImage());
 		}
 	}
 	
@@ -410,24 +416,34 @@ public class GameScreenPane extends GraphicsPane {
 	// checks if the car is touching an obstacle
 		public void checkCollision() {
 			for (int i = 0; i < obstacleList.size(); i++) {
-		        GImage obstacle = obstacleList.get(i);
+		        Obstacle obstacle = obstacleList.get(i);
 		        
-		        if (car1.getCarImage().getBounds().intersects(obstacle.getBounds())) {
-		        	player1Score.obstacleMinusPoints();
-		        	oneScore.setLabel(player1Score.scoreFormat());
+		        if (car1.getCarImage().getBounds().intersects(obstacle.getImage().getBounds())) {
+		        	 if (obstacle.getObstacleType() == ObstacleType.BONUS) {
+		                 player1Score.bonusPoints();  // Add bonus points for car 1
+		                 oneScore.setLabel(player1Score.scoreFormat());
+		             } else {
+		                 player1Score.obstacleMinusPoints();  // Deduct points for car 1
+		                 oneScore.setLabel(player1Score.scoreFormat());
+		             }
 		        	
 		            obstacleList.remove(obstacle);
-		            contents.remove(obstacle);
-		            mainScreen.remove(obstacle);
+		            contents.remove(obstacle.getImage());
+		            mainScreen.remove(obstacle.getImage());
 		        }
 		        
-		        if (car2.getCarImage().getBounds().intersects(obstacle.getBounds())) {
-		        	player2Score.obstacleMinusPoints();
-		        	twoScore.setLabel(player2Score.scoreFormat());
+		        if (car2.getCarImage().getBounds().intersects(obstacle.getImage().getBounds())) {
+		        	 if (obstacle.getObstacleType() == ObstacleType.BONUS) {
+		                 player1Score.bonusPoints();  // Add bonus points for car 1
+		                 oneScore.setLabel(player1Score.scoreFormat());
+		             } else {
+		                 player1Score.obstacleMinusPoints();  // Deduct points for car 1
+		                 oneScore.setLabel(player1Score.scoreFormat());
+		             }
 		        	
 		        	obstacleList.remove(obstacle);
-		            contents.remove(obstacle);
-		            mainScreen.remove(obstacle);
+		            contents.remove(obstacle.getImage());
+		            mainScreen.remove(obstacle.getImage());
 		        }
 		    }
 		}
