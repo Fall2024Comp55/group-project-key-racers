@@ -7,6 +7,7 @@ import java.util.Random;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
+import acm.graphics.GRect;
 import acm.graphics.GLabel;
 import acm.util.RandomGenerator;
 
@@ -396,6 +397,34 @@ public class GameScreenPane extends GraphicsPane {
 	}
 	
 	private void addScoreboard() {
+		// Left score background (for Red car)
+		GRect leftScoreBackground = new GRect(130, 50);
+		leftScoreBackground.setFilled(true);
+		leftScoreBackground.setFillColor(new Color(0, 0, 0, 120)); // Semi-transparent black
+		leftScoreBackground.setLocation(0, 10);
+
+		// Right score background (for Blue car)
+		GRect rightScoreBackground = new GRect(130, 50);
+		rightScoreBackground.setFilled(true);
+		rightScoreBackground.setFillColor(new Color(0, 0, 0, 120));
+		rightScoreBackground.setLocation(670, 10);
+
+		// Center timer background
+		GRect timerBackground = new GRect(100, 50);
+		timerBackground.setFilled(true);
+		timerBackground.setFillColor(new Color(0, 0, 0, 120));
+		timerBackground.setLocation(350, 10);
+		
+		
+		
+		
+
+		// ===== ADD BACKGROUNDS TO SCREEN BEFORE TEXT =====
+		mainScreen.add(leftScoreBackground);
+		mainScreen.add(rightScoreBackground);
+		mainScreen.add(timerBackground);
+		
+		
 		oneScore = new GLabel("0", 100, 100);
 		oneScore.setFont("Arial-Bold-40");
 		oneScore.setColor(Color.YELLOW);
