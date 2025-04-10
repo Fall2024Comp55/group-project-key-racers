@@ -16,12 +16,18 @@ public class Obstacle{
 	
 	//This function fills out the image variable to be used when shown
 	public void spawn() {
-		String s = "media/" + oType.toString() + ".png";
-		image = new GImage(s, positionX, positionY);
+		if (image == null) {
+			String s = "media/" + oType.toString() + ".png";
+			image = new GImage(s, positionX, positionY);
+			image.scale(0.6, 0.6); 
+		}
 	}
 	
 	// returns the image
 	public GImage getImage() {
+		if (image == null) {
+			spawn();
+		}
 	    return image;
 	}
 	
