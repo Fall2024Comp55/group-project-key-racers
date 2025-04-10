@@ -20,8 +20,8 @@ public class Obstacle{
 		image = new GImage(s, positionX, positionY);
 	}
 	
-	/* public boolean checkCollision(){}
-	 * to be added when the player class is made
-	 * */
+	public ObstacleType getObstacleType() {
+        return this.oType;
+    }
 	
 }

@@ -28,7 +28,6 @@ public class GameScreenPane extends GraphicsPane {
 	private Scoreboard player1Score;
 	private Scoreboard player2Score;
 	
-	
 	private ArrayList<GImage> obstacleList;
 	private RandomGenerator rgen;
 	private Timer obstacleTimer;
