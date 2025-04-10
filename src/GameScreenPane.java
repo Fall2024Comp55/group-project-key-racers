@@ -463,10 +463,10 @@ public class GameScreenPane extends GraphicsPane {
 		        
 		        if (car2.getCarImage().getBounds().intersects(obstacle.getImage().getBounds())) {
 		        	 if (obstacle.getObstacleType() == ObstacleType.BONUS) {
-		                 player1Score.bonusPoints();  // Add bonus points for car 1
+		                 player2Score.bonusPoints();  // Add bonus points for car 2
 		                 oneScore.setLabel(player1Score.scoreFormat());
 		             } else {
-		                 player1Score.obstacleMinusPoints();  // Deduct points for car 1
+		                 player2Score.obstacleMinusPoints();  // Deduct points for car 2
 		                 oneScore.setLabel(player1Score.scoreFormat());
 		             }
 		        	
