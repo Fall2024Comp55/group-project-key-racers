@@ -16,6 +16,7 @@ import acm.util.RandomGenerator;
 public class GameScreenPane extends GraphicsPane {
 	
 	private SoundPlayer gameMusic = new SoundPlayer();
+	private SoundPlayer obstacleCollision = new SoundPlayer();
 	
 	private Car car1;
 	private Car car2;
@@ -445,15 +446,21 @@ public class GameScreenPane extends GraphicsPane {
 		public void checkCollision() {
 			for (int i = 0; i < obstacleList.size(); i++) {
 		        Obstacle obstacle = obstacleList.get(i);
-		        SoundPlayer obstacleCollision;
 		        
 		        if (car1.getCarImage().getBounds().intersects(obstacle.getImage().getBounds())) {
 		        	 if (obstacle.getObstacleType() == ObstacleType.BONUS) {
 		                 player1Score.bonusPoints();  // Add bonus points for car 1
 		                 oneScore.setLabel(player1Score.scoreFormat());
+		                 
+		              // stops any car crash or bonus collected sound already in play
+		                 if (obstacleCollision != null) obstacleCollision.stopSound(); 
+		                 obstacleCollision.playEndSound("media/BonusCollected.wav");
 		             } else {
 		                 player1Score.obstacleMinusPoints();  // Deduct points for car 1
 		                 oneScore.setLabel(player1Score.scoreFormat());
+		                 
+		                 if (obstacleCollision != null) obstacleCollision.stopSound();
+		                 obstacleCollision.playEndSound("media/Carcrash.wav");
 		             }
 		        	
 		            obstacleList.remove(obstacle);
@@ -465,9 +472,15 @@ public class GameScreenPane extends GraphicsPane {
 		        	 if (obstacle.getObstacleType() == ObstacleType.BONUS) {
 		                 player2Score.bonusPoints();  // Add bonus points for car 2
 		                 twoScore.setLabel(player2Score.scoreFormat());
+		                 
+		                 if (obstacleCollision != null) obstacleCollision.stopSound(); 
+		                 obstacleCollision.playEndSound("media/BonusCollected.wav");
 		             } else {
 		                 player2Score.obstacleMinusPoints();  // Deduct points for car 2
 		                 twoScore.setLabel(player2Score.scoreFormat());
+		                 
+		                 if (obstacleCollision != null) obstacleCollision.stopSound();
+		                 obstacleCollision.playEndSound("media/Carcrash.wav");
 		             }
 		        	
 		        	obstacleList.remove(obstacle);
