@@ -433,12 +433,16 @@ public class GameScreenPane extends GraphicsPane {
 		                 player1Score.bonusPoints();  // Add bonus points for car 1
 		                 oneScore.setLabel(player1Score.scoreFormat());
 		                 
+		                 centerScoreLabel(oneScore, 60);
+		                 
 		              // stops any car crash or bonus collected sound already in play
 		                 if (obstacleCollision != null) obstacleCollision.stopSound(); 
 		                 obstacleCollision.playEndSound("media/BonusCollected.wav");
 		             } else {
 		                 player1Score.obstacleMinusPoints();  // Deduct points for car 1
 		                 oneScore.setLabel(player1Score.scoreFormat());
+		                 
+		                 centerScoreLabel(oneScore, 60);
 		                 
 		                 if (obstacleCollision != null) obstacleCollision.stopSound();
 		                 obstacleCollision.playEndSound("media/Carcrash.wav");
@@ -454,11 +458,15 @@ public class GameScreenPane extends GraphicsPane {
 		                 player2Score.bonusPoints();  // Add bonus points for car 2
 		                 twoScore.setLabel(player2Score.scoreFormat());
 		                 
+		                 centerScoreLabel(twoScore, 730);
+		                 
 		                 if (obstacleCollision != null) obstacleCollision.stopSound(); 
 		                 obstacleCollision.playEndSound("media/BonusCollected.wav");
 		             } else {
 		                 player2Score.obstacleMinusPoints();  // Deduct points for car 2
 		                 twoScore.setLabel(player2Score.scoreFormat());
+		                 
+		                 centerScoreLabel(twoScore, 730);
 		                 
 		                 if (obstacleCollision != null) obstacleCollision.stopSound();
 		                 obstacleCollision.playEndSound("media/Carcrash.wav");
@@ -479,6 +487,13 @@ public class GameScreenPane extends GraphicsPane {
 		    }
 		}
 		return false;
+	}
+	
+	// centers the score whenever string length increases
+	private void centerScoreLabel(GLabel scoreLabel, int xPosition) {
+	    double labelWidth = scoreLabel.getWidth();
+	    double newX = xPosition - (labelWidth / 2);  // Center the label horizontally
+	    scoreLabel.setLocation(newX, scoreLabel.getY());
 	}
 	
 	public void moveLeftPlayer1() {
