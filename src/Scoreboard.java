@@ -3,7 +3,6 @@ import java.awt.event.ActionListener;
 
 public class Scoreboard {
 	private int playerScoreboard;
-	private int points;
 	private GameScreenPane gameScreenPane;
 	
 	// Scoreboard can call methods on GameScreenPane
@@ -14,7 +13,6 @@ public class Scoreboard {
 	//Resets both players score to zero as the game starts
 	public void startScore() {
 		playerScoreboard = 0;
-		
 	}
 	
 	// Points for bonus item
@@ -27,6 +25,7 @@ public class Scoreboard {
 		playerScoreboard -= 100;
 	}
 	
+	//Format the score in game screen
 	public String scoreFormat() {
 		return "" + playerScoreboard;
 	}

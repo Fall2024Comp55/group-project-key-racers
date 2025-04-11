@@ -4,7 +4,6 @@ public class Obstacle{
 	private ObstacleType oType;
 	private int positionX;
 	private int positionY;
-	private final int losePoints = 1;
 	
 	GImage image;
 	
