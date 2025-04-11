@@ -314,6 +314,11 @@ public class GameScreenPane extends GraphicsPane {
 		
 		Obstacle obstacle = new Obstacle(obstacleType, startXPosition);
 	    obstacle.spawn();
+	    
+	    if (isOverlappingWithTree(obstacle.getImage())) {
+	        obstacle.getImage().sendToBack(); // Move obstacle behind the tree
+	    }
+	    
 	    return obstacle;
 	}
 	
@@ -465,6 +470,16 @@ public class GameScreenPane extends GraphicsPane {
 		        }
 		    }
 		}
+	
+	private boolean isOverlappingWithTree(GImage obstacleImage) {
+		GImage[] trees = {tree1, tree2, tree3, tree4, tree5};
+		for (GImage tree : trees) {
+		    if (obstacleImage.getBounds().intersects(tree.getBounds())) {
+		        return true; // Overlap detected
+		    }
+		}
+		return false;
+	}
 	
 	public void moveLeftPlayer1() {
 		car1.updateXleft();
