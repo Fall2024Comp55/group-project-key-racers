@@ -31,7 +31,7 @@ public class GameScreenPane extends GraphicsPane {
 	private Scoreboard player1Score;
 	private Scoreboard player2Score;
 	
-	
+	private ArrayList<GImage> treeList = new ArrayList<>();
 	private ArrayList<Obstacle> obstacleList;
 	private RandomGenerator rgen;
 	private Timer obstacleTimer;
@@ -63,16 +63,12 @@ public class GameScreenPane extends GraphicsPane {
 		addRoad();
 		addCars();
 		addTrees();
-		//addObstacles();
 		addScoreboard();
 		addTimer();
 		
-	    /*startTreeMovement(); // Start tree movement
-	    startRoadMovement(); // Start road movement
-	    startObstacleMovement();*/
 		startUniversalTimer();
 		
-		raceTimer.startCountdown(); // access the timer from RaceTimer class
+		raceTimer.startCountdown();
 		
 	}
 
@@ -183,7 +179,7 @@ public class GameScreenPane extends GraphicsPane {
 	}
 	
 	public void addTrees() {
-		
+		treeList.clear();
 		Random rand = new Random(); // // Create a random number generator for tree scaling
 		
 		// Create and scale each tree with a random size between 0.6x and 1.2x
@@ -202,20 +198,16 @@ public class GameScreenPane extends GraphicsPane {
 		tree5 = new GImage("Tree.png", 700, 400);
 		tree5.scale(getRandomScale(rand));
 		
-		contents.add(tree1);
-		mainScreen.add(tree1);
-		
-		contents.add(tree2);
-		mainScreen.add(tree2);
-		
-		contents.add(tree3);
-		mainScreen.add(tree3);
-		
-		contents.add(tree4);
-		mainScreen.add(tree4);
-		
-		contents.add(tree5);
-		mainScreen.add(tree5); 
+		treeList.add(tree1);
+	    treeList.add(tree2);
+	    treeList.add(tree3);
+	    treeList.add(tree4);
+	    treeList.add(tree5);
+
+	    for (GImage tree : treeList) {
+	        contents.add(tree);
+	        mainScreen.add(tree);
+	    } 
 	}
 	
 	// Returns a random scale factor between 0.6 and 1.2 to vary tree sizes. 
