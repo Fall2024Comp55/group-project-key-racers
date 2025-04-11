@@ -62,10 +62,10 @@ public class GameScreenPane extends GraphicsPane {
 		playMusic();
 		addRoad();
 		addCars();
-		addTimer();
 		addTrees();
 		//addObstacles();
 		addScoreboard();
+		addTimer();
 		
 	    /*startTreeMovement(); // Start tree movement
 	    startRoadMovement(); // Start road movement
