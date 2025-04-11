@@ -4,6 +4,7 @@ import java.util.TimerTask;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Iterator;
 
 import acm.graphics.GImage;
 import acm.graphics.GObject;
@@ -367,23 +368,21 @@ public class GameScreenPane extends GraphicsPane {
 	
 	//made more sense to separate the movement and placing at the top
 	private void moveObstacles() {
-		for(Obstacle obstacle : obstacleList) {
-			obstacle.getImage().move(0, raceTimer.getSpeed());
-		}
-		
-		for(Obstacle obstacle : obstacleList) {
-			resetObstaclePosition(obstacle);
-		}
-		/*if(obstacleList.size() < 5) {
-			GImage i = makeObstacles(true);
-			obstacleList.add(i);
-			contents.add(i);
-			mainScreen.add(i);
-			GImage i2 = makeObstacles(false);
-			obstacleList.add(i2);
-			contents.add(i2);
-			mainScreen.add(i2);
-		}*/
+	    Iterator<Obstacle> iterator = obstacleList.iterator();  // Initialize the iterator
+	    while (iterator.hasNext()) {
+	        Obstacle obstacle = iterator.next();
+	        obstacle.getImage().move(0, raceTimer.getSpeed());  // Move the obstacle
+
+	        // Check if obstacle has moved past the bottom of the screen
+	        if (obstacle.getImage().getY() > mainScreen.getHeight()) {
+	            iterator.remove();  // Safely remove obstacle from the list using iterator
+	            contents.remove(obstacle.getImage());
+	            mainScreen.remove(obstacle.getImage());
+	        } else {
+	            // Optionally, you can reset obstacle position if it's still within bounds
+	            resetObstaclePosition(obstacle);
+	        }
+	    }
 	}
 	
 	private void resetObstaclePosition(Obstacle obstacle) {
