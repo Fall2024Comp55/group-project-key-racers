@@ -296,34 +296,18 @@ public class GameScreenPane extends GraphicsPane {
 	//Creates and places the image for each obstacle
 	private Obstacle makeObstacle(int r, boolean forLeftRoad) {
 		int startXPosition = 124 + ((forLeftRoad) ? 0 : 332);
-		String name = "media/";
-		//int r = rgen.nextInt(0,5);
-		double scale = 1;
-		//System.out.println(r);
-		
-		//to fix other scaling
 		ObstacleType obstacleType;
 		
 		if (r == 0) {
 	        obstacleType = ObstacleType.FALLENTREE;
-	        name += "FallenTree.png";
-	        scale = .4;
 	    } else if (r == 1) {
 	        obstacleType = ObstacleType.BONUS;
-	        name += "BonusItem.png";
-	        scale = .4;
 	    } else if (r == 2) {
 	        obstacleType = ObstacleType.CRATE;
-	        name += "Crate.png";
-	        scale = .4;
 	    } else if (r == 3) {
 	        obstacleType = ObstacleType.STICK;
-	        name += "Stick.png";
-	        scale = .4;
 	    } else {
 	        obstacleType = ObstacleType.STONE;
-	        name += "Stone.png";
-	        scale = .4;
 	    }
 		
 		if (r != 0) {
