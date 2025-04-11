@@ -445,6 +445,7 @@ public class GameScreenPane extends GraphicsPane {
 		public void checkCollision() {
 			for (int i = 0; i < obstacleList.size(); i++) {
 		        Obstacle obstacle = obstacleList.get(i);
+		        SoundPlayer obstacleCollision;
 		        
 		        if (car1.getCarImage().getBounds().intersects(obstacle.getImage().getBounds())) {
 		        	 if (obstacle.getObstacleType() == ObstacleType.BONUS) {
@@ -463,10 +464,10 @@ public class GameScreenPane extends GraphicsPane {
 		        if (car2.getCarImage().getBounds().intersects(obstacle.getImage().getBounds())) {
 		        	 if (obstacle.getObstacleType() == ObstacleType.BONUS) {
 		                 player2Score.bonusPoints();  // Add bonus points for car 2
-		                 oneScore.setLabel(player1Score.scoreFormat());
+		                 twoScore.setLabel(player2Score.scoreFormat());
 		             } else {
 		                 player2Score.obstacleMinusPoints();  // Deduct points for car 2
-		                 oneScore.setLabel(player1Score.scoreFormat());
+		                 twoScore.setLabel(player2Score.scoreFormat());
 		             }
 		        	
 		        	obstacleList.remove(obstacle);
