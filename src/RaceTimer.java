@@ -47,9 +47,10 @@ public class RaceTimer {
     private String formatTime() {
         int minutes = timeLeft / 60;
         int seconds = timeLeft % 60;
-        if (seconds % 10 == 0) {
+        if (seconds % 5 == 0) {
         	gameSpeed++;
         }
+        
         if (seconds < 10) {
         	return minutes + ":0" + seconds;
         }

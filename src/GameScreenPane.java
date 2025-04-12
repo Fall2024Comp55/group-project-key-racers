@@ -189,6 +189,15 @@ public class GameScreenPane extends GraphicsPane {
 	public void updateTimerLabel(String newTime) {
 		timerLabel.setLabel(newTime);
 		timerLabel.sendToFront();
+		
+		player1Score.speedScore();
+		oneScore.setLabel(player1Score.scoreFormat());
+        centerScoreLabel(oneScore, 60);
+        
+		player2Score.speedScore();
+		twoScore.setLabel(player2Score.scoreFormat());
+        centerScoreLabel(twoScore, 730);
+        
 		if(raceTimer.getTimeLeft() == 0) {
 			raceTimer.stopCountdown();
 			mainScreen.switchToWinScreen();
@@ -444,29 +453,29 @@ public class GameScreenPane extends GraphicsPane {
 	}
 	
 	// checks if the car is touching an obstacle
-		public void checkCollision() {
-			for (int i = 0; i < obstacleList.size(); i++) {
-		        Obstacle obstacle = obstacleList.get(i);
+	public void checkCollision() {
+		for (int i = 0; i < obstacleList.size(); i++) {
+		    Obstacle obstacle = obstacleList.get(i);
 		        
-		        if (car1.getCarImage().getBounds().intersects(obstacle.getImage().getBounds())) {
-		        	 if (obstacle.getObstacleType() == ObstacleType.BONUS) {
-		                 player1Score.bonusPoints();  // Add bonus points for car 1
-		                 oneScore.setLabel(player1Score.scoreFormat());
+		    if (car1.getCarImage().getBounds().intersects(obstacle.getImage().getBounds())) {
+		        if (obstacle.getObstacleType() == ObstacleType.BONUS) {
+		        	player1Score.bonusPoints();  // Add bonus points for car 1
+		            oneScore.setLabel(player1Score.scoreFormat());
 		                 
-		                 centerScoreLabel(oneScore, 60);
+		            centerScoreLabel(oneScore, 60);
 		                 
 		              // stops any car crash or bonus collected sound already in play
-		                 if (obstacleCollision != null) obstacleCollision.stopSound(); 
+		            if (obstacleCollision != null) obstacleCollision.stopSound(); 
 		                 obstacleCollision.playEndSound("media/BonusCollected.wav");
-		             } else {
+		            } else {
 		                 player1Score.obstacleMinusPoints();  // Deduct points for car 1
 		                 oneScore.setLabel(player1Score.scoreFormat());
 		                 
 		                 centerScoreLabel(oneScore, 60);
 		                 
-		                 if (obstacleCollision != null) obstacleCollision.stopSound();
+		            if (obstacleCollision != null) obstacleCollision.stopSound();
 		                 obstacleCollision.playEndSound("media/Carcrash.wav");
-		             }
+		            }
 		        	
 		            obstacleList.remove(obstacle);
 		            contents.remove(obstacle.getImage());
@@ -498,6 +507,11 @@ public class GameScreenPane extends GraphicsPane {
 		        }
 		    }
 		}
+	
+	public int getSpeed() {
+		return raceTimer.getSpeed();
+	}
+		
 	
 	
 	// centers the score whenever string length increases

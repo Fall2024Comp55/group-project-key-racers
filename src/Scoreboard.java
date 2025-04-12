@@ -25,6 +25,10 @@ public class Scoreboard {
 		playerScoreboard -= 100;
 	}
 	
+	public void speedScore() {
+		playerScoreboard += gameScreenPane.getSpeed();
+	}
+	
 	//Format the score in game screen
 	public String scoreFormat() {
 		return "" + playerScoreboard;
