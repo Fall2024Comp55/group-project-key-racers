@@ -30,6 +30,9 @@ public class GameScreenPane extends GraphicsPane {
 	private GLabel twoScore;
 	private Scoreboard player1Score;
 	private Scoreboard player2Score;
+	private GRect leftScoreBackground;
+	private GRect rightScoreBackground;
+	private GRect timerBackground;
 	
 	private ArrayList<GImage> treeList = new ArrayList<>();
 	private ArrayList<Obstacle> obstacleList;
@@ -125,12 +128,34 @@ public class GameScreenPane extends GraphicsPane {
 	                    obstacleList.add(obstacle1);
 	                    contents.add(obstacle1.getImage());  // Add the GImage to the screen
 	                    mainScreen.add(obstacle1.getImage()); // Add to the main screen
-
+	                    
+	                    // make obstacle behind trees and scoreboard, we should make function for this
+	                    for (GImage tree : treeList) {
+	                    	tree.sendToFront();
+	                    }
+	                    
+	                    leftScoreBackground.sendToFront();
+	                    timerBackground.sendToFront();
+	                    timerLabel.sendToFront();
+	                    oneScore.sendToFront();
+	                    twoScore.sendToFront();
+	                   
 	                    Obstacle obstacle2 = makeObstacle(num, false);
 	                    obstacleList.add(obstacle2);
 	                    contents.add(obstacle2.getImage());
 	                    mainScreen.add(obstacle2.getImage());
-
+	                    
+	                    for (GImage tree : treeList) {
+	                    	tree.sendToFront();
+	                    }
+	                    
+	                    leftScoreBackground.sendToFront();
+	                    rightScoreBackground.sendToFront();
+	                    timerBackground.sendToFront();
+	                    timerLabel.sendToFront();
+	                    oneScore.sendToFront();
+	                    twoScore.sendToFront();
+	                    
 	                    obstacleSpawnTimer = 0;
 					}
 					obstacleSpawnTimer++;
@@ -314,11 +339,6 @@ public class GameScreenPane extends GraphicsPane {
 		
 		Obstacle obstacle = new Obstacle(obstacleType, startXPosition);
 	    obstacle.spawn();
-	    
-	    if (isOverlappingWithTree(obstacle.getImage())) {
-	        obstacle.getImage().sendToBack(); // Move obstacle behind the tree
-	    }
-	    
 	    return obstacle;
 	}
 	
@@ -379,19 +399,19 @@ public class GameScreenPane extends GraphicsPane {
 	
 	private void addScoreboard() {
 		// Left score background (for Red car)
-		GRect leftScoreBackground = new GRect(130, 50);
+		leftScoreBackground = new GRect(130, 50);
 		leftScoreBackground.setFilled(true);
 		leftScoreBackground.setFillColor(new Color(0, 0, 0, 120)); // Semi-transparent black
 		leftScoreBackground.setLocation(0, 10);
 
 		// Right score background (for Blue car)
-		GRect rightScoreBackground = new GRect(130, 50);
+		rightScoreBackground = new GRect(130, 50);
 		rightScoreBackground.setFilled(true);
 		rightScoreBackground.setFillColor(new Color(0, 0, 0, 120));
 		rightScoreBackground.setLocation(670, 10);
 
 		// Center timer background
-		GRect timerBackground = new GRect(100, 50);
+		timerBackground = new GRect(100, 50);
 		timerBackground.setFilled(true);
 		timerBackground.setFillColor(new Color(0, 0, 0, 120));
 		timerBackground.setLocation(350, 10);
@@ -479,15 +499,6 @@ public class GameScreenPane extends GraphicsPane {
 		    }
 		}
 	
-	private boolean isOverlappingWithTree(GImage obstacleImage) {
-		GImage[] trees = {tree1, tree2, tree3, tree4, tree5};
-		for (GImage tree : trees) {
-		    if (obstacleImage.getBounds().intersects(tree.getBounds())) {
-		        return true; // Overlap detected
-		    }
-		}
-		return false;
-	}
 	
 	// centers the score whenever string length increases
 	private void centerScoreLabel(GLabel scoreLabel, int xPosition) {
