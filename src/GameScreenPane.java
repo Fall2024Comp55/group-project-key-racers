@@ -517,8 +517,15 @@ public class GameScreenPane extends GraphicsPane {
 	public int getSpeed() {
 		return raceTimer.getSpeed();
 	}
-		
 	
+	public int getPlayerOneScore() {
+		return player1Score.getPlayerScore();
+	}
+		
+	public int getPlayerTwoScore() {
+		return player2Score.getPlayerScore();
+	}
+		
 	
 	// centers the score whenever string length increases
 	private void centerScoreLabel(GLabel scoreLabel, int xPosition) {

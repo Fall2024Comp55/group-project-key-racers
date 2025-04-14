@@ -5,10 +5,12 @@ import acm.graphics.GObject;
 
 public class WinScreenPane extends GraphicsPane {
 	private SoundPlayer endMusic = new SoundPlayer();
+	private GameScreenPane gameScreenPane;
 	
 	
-	public WinScreenPane(MainApplication mainScreen) {
+	public WinScreenPane(MainApplication mainScreen, GameScreenPane gameScreenPane) {
 		this.mainScreen = mainScreen;
+		this.gameScreenPane = gameScreenPane;
 	}
 	
 	@Override

@@ -29,14 +29,15 @@ public class Scoreboard {
 		playerScoreboard += gameScreenPane.getSpeed();
 	}
 	
+	// return the player's score
+	public int getPlayerScore() {
+        return playerScoreboard;
+    }
+	
 	//Format the score in game screen
 	public String scoreFormat() {
 		return "" + playerScoreboard;
 	}
 	
-	//Updates the score at the GameScreen class
-	public int updateScore() {
-		return playerScoreboard;
-	}
 
 }
