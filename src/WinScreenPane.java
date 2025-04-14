@@ -39,17 +39,28 @@ public class WinScreenPane extends GraphicsPane {
 	}
 	
 	private void addWinnerDisplay() {
+		if (gameScreenPane.getPlayerOneScore() > gameScreenPane.getPlayerTwoScore()) {
+			GImage blueWinner = new GImage("media/WinScreenBlue.png", 200, 100);
+			blueWinner.scale(0.85, 0.85);
+			blueWinner.setLocation((mainScreen.getWidth() - blueWinner.getWidth())/ 2, 0);
+			
+			contents.add(blueWinner);
+			mainScreen.add(blueWinner);
+		}
+		// add tie
+		else {
+			GImage redWinner = new GImage("media/WinScreenRed.png", 200, 100);
+			redWinner.setLocation((mainScreen.getWidth() - redWinner.getWidth())/ 2, 0);
+			
+			contents.add(redWinner);
+			mainScreen.add(redWinner);
+		}
 		/* if (score1 > score2) this would be for the score
 		 * GImage Winner = imageBlue...
 		 * else 
 		 * GImage Winner = imageRed...
 		 */
-		GImage blueWinner = new GImage("WinScreenBlue.png", 200, 100);
-		blueWinner.scale(0.85, 0.85);
-		blueWinner.setLocation((mainScreen.getWidth() - blueWinner.getWidth())/ 2, 0);
 		
-		contents.add(blueWinner);
-		mainScreen.add(blueWinner);
 	}
 	
 	private void playMusic() {
