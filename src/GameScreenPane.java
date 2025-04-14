@@ -104,6 +104,12 @@ public class GameScreenPane extends GraphicsPane {
 	        raceTimer.stopCountdown();
 	    }
 	    
+	    if(universalTimer != null) {
+	    	universalTimer.cancel();
+	    	universalTimer.purge();
+	    	universalTimer = null;
+	    }
+	    
 	    gameMusic.stopSound();
 	}
 	
