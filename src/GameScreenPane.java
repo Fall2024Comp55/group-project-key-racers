@@ -48,8 +48,8 @@ public class GameScreenPane extends GraphicsPane {
 	public GameScreenPane(MainApplication mainScreen) {
 		this.mainScreen = mainScreen;
 		raceTimer = new RaceTimer(this);
-		car1 = new Car("RedCar.png", 220, 500, 124, 316);
-		car2 = new Car("BlueCar.png", 550, 500, 456, 648);
+		car1 = new Car("BlueCar.png", 220, 500, 124, 316);
+		car2 = new Car("RedCar.png", 550, 500, 456, 648);
 		player1Score = new Scoreboard(this);
 		player2Score = new Scoreboard(this);
 		
