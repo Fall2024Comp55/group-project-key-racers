@@ -1,7 +1,7 @@
 import acm.graphics.GImage;
-import acm.graphics.GObject;
+//import acm.graphics.GObject;
 import javax.swing.*;
-import java.awt.*;
+//import java.awt.*;
 import java.awt.event.*;
 
 
