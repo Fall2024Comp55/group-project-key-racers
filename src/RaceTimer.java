@@ -41,6 +41,13 @@ public class RaceTimer {
         }
 	}
 	
+	public Timer getCountdownTimer() {
+		if (countdownTimer == null) {
+			return null;
+		}
+		return countdownTimer;
+	}
+	
 	// math to make the timer change between minutes and seconds
     private String formatTime() {
         int minutes = timeLeft / 60;

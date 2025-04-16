@@ -69,6 +69,9 @@ public class GameScreenPane extends GraphicsPane {
 		addScoreboard();
 		addTimer();
 		
+		player1Score.startScore();
+		player2Score.startScore();
+		
 		startUniversalTimer();
 		
 		raceTimer.startCountdown();
