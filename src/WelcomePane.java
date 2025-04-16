@@ -4,10 +4,12 @@ import acm.graphics.GImage;
 import acm.graphics.GObject;
 
 public class WelcomePane extends GraphicsPane{
+	//Sets up welcome pane as the main screen
 	public WelcomePane(MainApplication mainScreen) {
 		this.mainScreen = mainScreen;
 	}
 	
+	//Shows the content of the welcome pane/main menu
 	@Override
 	public void showContent() {
 		addPicture();
@@ -15,6 +17,7 @@ public class WelcomePane extends GraphicsPane{
 		addStartGameButton();
 	}
 
+	//Hides the content of the welcome pane/main menu
 	@Override
 	public void hideContent() {
 		for(GObject item : contents) {
@@ -33,9 +36,7 @@ public class WelcomePane extends GraphicsPane{
 		mainScreen.add(startImage);
 	}
 	
-	/*Add in the Instruction button, which is where the player can click on to 
-	 * find instructions
-	 */
+	//Add in the Instruction button, which is where the player can click on to find instructions
 	private void addDescriptionButton() {
 		GImage moreButton = new GImage("InstructionsButton.png", 200, 200);
 		moreButton.scale(0.5, 0.5);
@@ -46,9 +47,7 @@ public class WelcomePane extends GraphicsPane{
 
 	}
 	
-	/*Add in the Start Game button, which is where the player clicks on to start 
-	 * the game
-	*/
+	//Add in the Start Game button, which is where the player clicks on to start the game
 	private void addStartGameButton() {
 		GImage moreButton = new GImage("StartGameButton.png", 200, 200);
 		moreButton.scale(0.5, 0.5);
@@ -59,6 +58,7 @@ public class WelcomePane extends GraphicsPane{
 
 	}
 	
+	//Mouse clicked leads to either the game or the description pane/instructions
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(1)) {
@@ -68,5 +68,4 @@ public class WelcomePane extends GraphicsPane{
 			mainScreen.switchToGameScreen();
 		}
 	}
-
 }
