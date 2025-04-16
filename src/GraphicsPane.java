@@ -11,7 +11,6 @@ public class GraphicsPane {
 		contents = new ArrayList<GObject>();
 	}
 
-	
 	public void showContent() {
 	}
 
@@ -41,5 +40,4 @@ public class GraphicsPane {
 
 	public void keyTyped(KeyEvent e) {
 	}
-
 }
