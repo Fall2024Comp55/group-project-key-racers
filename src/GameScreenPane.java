@@ -499,7 +499,7 @@ public class GameScreenPane extends GraphicsPane {
 		            if (obstacleCollision != null) obstacleCollision.stopSound(); 
 		                 obstacleCollision.playEndSound("media/BonusCollected.wav");
 		            } else {
-		                 player1Score.obstacleMinusPoints();  // Deduct points for car 1
+		                 player1Score.obstacleMinusPoints(obstacle);  // Deduct points for car 1
 		                 oneScore.setLabel(player1Score.scoreFormat());
 		                 
 		                 centerScoreLabel(oneScore, 60);
@@ -523,7 +523,7 @@ public class GameScreenPane extends GraphicsPane {
 		                 if (obstacleCollision != null) obstacleCollision.stopSound(); 
 		                 obstacleCollision.playEndSound("media/BonusCollected.wav");
 		             } else {
-		                 player2Score.obstacleMinusPoints();  // Deduct points for car 2
+		                 player2Score.obstacleMinusPoints(obstacle);  // Deduct points for car 2
 		                 twoScore.setLabel(player2Score.scoreFormat());
 		                 
 		                 centerScoreLabel(twoScore, 730);

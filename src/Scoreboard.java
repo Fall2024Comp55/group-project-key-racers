@@ -18,8 +18,19 @@ public class Scoreboard {
 	}
 	
 	//Minus points for hitting obstacles
-	public void obstacleMinusPoints() {
-		playerScoreboard -= 100;
+	public void obstacleMinusPoints(Obstacle obstacle) {
+		if (obstacle.getObstacleType() == ObstacleType.CRATE) {
+            playerScoreboard -= 100;
+        }
+        else if (obstacle.getObstacleType() == ObstacleType.FALLENTREE || obstacle.getObstacleType() == ObstacleType.MIRRORFALLENTREE) {
+            playerScoreboard -= 225;
+        }
+        else if (obstacle.getObstacleType() == ObstacleType.STICK) {
+            playerScoreboard -= 35;
+        }
+        else if (obstacle.getObstacleType() == ObstacleType.STONE) {
+            playerScoreboard -=50;
+        }
 	}
 	
 	//Score adds up due to the speed 
