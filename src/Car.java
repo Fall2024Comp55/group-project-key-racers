@@ -2,15 +2,13 @@ import acm.graphics.GImage;
 import javax.swing.*;
 import java.awt.event.*;
 
-
 public class Car implements ActionListener{
 	private int positionX;
 	private int positionY;
 	private int leftBoundary;
 	private int rightBoundary;
-	private Timer t;
 	private final int MS = 5000;
-	
+	private Timer t;
 	private GImage carImage;
 	
     // Constructor initializes the car with an image, position, and movement boundaries
@@ -22,9 +20,7 @@ public class Car implements ActionListener{
 		this.leftBoundary = leftBoundary;
 		this.rightBoundary = rightBoundary;
 		t = new Timer(MS, this);
-	
 	}
-	
 	
 	//resets speed, the timer is reset to make acceleration always take a constant amount of time
 	public void restSpeedForStart() {
@@ -54,11 +50,11 @@ public class Car implements ActionListener{
 		
 		carImage.setLocation(positionX, positionY);
 	}
+	
     // Returns the car's GImage object so it can be added to the game screen
 	public GImage getCarImage() {
 		return carImage;
 	}
-
 
 
 	@Override
