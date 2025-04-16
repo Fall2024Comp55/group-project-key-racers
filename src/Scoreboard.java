@@ -1,6 +1,3 @@
-//import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
-
 public class Scoreboard {
 	private int playerScoreboard;
 	private GameScreenPane gameScreenPane;
@@ -15,21 +12,22 @@ public class Scoreboard {
 		playerScoreboard = 0;
 	}
 	
-	// Points for bonus item
+	//Points for bonus item
 	public void bonusPoints() {
 		playerScoreboard += 100;
 	}
 	
-	// Minus Points for hitting obstacles
+	//Minus points for hitting obstacles
 	public void obstacleMinusPoints() {
 		playerScoreboard -= 100;
 	}
 	
+	//Score adds up due to the speed 
 	public void speedScore() {
 		playerScoreboard += gameScreenPane.getSpeed();
 	}
 	
-	// return the player's score
+	//Return the player's score
 	public int getPlayerScore() {
         return playerScoreboard;
     }
