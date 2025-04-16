@@ -7,6 +7,7 @@ public class Obstacle{
 	
 	GImage image;
 	
+	//Sets up the individual obstacle object
 	public Obstacle(ObstacleType oType, int positionX) {
 		this.oType = oType;
 		this.positionX = positionX;
@@ -22,7 +23,7 @@ public class Obstacle{
 		}
 	}
 	
-	// returns the image
+	//Returns the image
 	public GImage getImage() {
 		if (image == null) {
 			spawn();
@@ -30,6 +31,7 @@ public class Obstacle{
 	    return image;
 	}
 	
+	//Returns the type of obstacle
 	public ObstacleType getObstacleType() {
         return this.oType;
     }
