@@ -1,4 +1,5 @@
-import javax.swing.Timer;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class RaceTimer {
 	//This is the equivalent to 3 minutes in seconds
@@ -16,15 +17,17 @@ public class RaceTimer {
 	public void startCountdown(){
 		timeLeft = 10;
 		gameSpeed = 5;
-		countdownTimer = new Timer(1000, e -> {
-            timeLeft--;
-            gameScreenPane.updateTimerLabel(formatTime());
-            if (timeLeft <= 0) {
-                countdownTimer.stop();
-            }
-        });
-        countdownTimer.start();
-	
+		countdownTimer = new Timer();
+		countdownTimer.scheduleAtFixedRate(new TimerTask() {
+			@Override
+			public void run() {
+				timeLeft--;
+				gameScreenPane.updateTimerLabel(formatTime());
+				if(timeLeft <= 0) {
+					countdownTimer.cancel();
+				}
+			}
+		}, 0, 1000);
 	}
 	
 	//For the car class to get time for the car to increase speed
@@ -37,7 +40,7 @@ public class RaceTimer {
 	//Timer stops when it reaches to 0 and a winner is determined
 	public void stopCountdown(){
 		if (countdownTimer != null) {
-            countdownTimer.stop();
+            countdownTimer.purge();
         }
 	}
 	
