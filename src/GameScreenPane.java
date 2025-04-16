@@ -433,7 +433,9 @@ public class GameScreenPane extends GraphicsPane {
 		
 		
 		
-		
+		contents.add(leftScoreBackground);
+		contents.add(rightScoreBackground);
+		contents.add(timerBackground);
 
 		// ===== ADD BACKGROUNDS TO SCREEN BEFORE TEXT =====
 		mainScreen.add(leftScoreBackground);
