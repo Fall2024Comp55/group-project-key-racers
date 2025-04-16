@@ -18,6 +18,7 @@ public class GameScreenPane extends GraphicsPane {
 	private SoundPlayer gameMusic = new SoundPlayer();
 	private SoundPlayer obstacleCollision = new SoundPlayer();
 	
+	private boolean gameRunning = false;
 	private Car car1;
 	private Car car2;
 	private GImage tree1, tree2, tree3, tree4, tree5;
@@ -62,6 +63,7 @@ public class GameScreenPane extends GraphicsPane {
 	
 	@Override
 	public void showContent() {
+		gameRunning = true;
 		playMusic();
 		addRoad();
 		addCars();
@@ -113,6 +115,14 @@ public class GameScreenPane extends GraphicsPane {
 	    	universalTimer = null;
 	    }
 	    
+	    gameRunning = false;
+
+	    // Remove all remaining obstacles since these aren't added in contents
+	    for (Obstacle obstacle : obstacleList) {
+	    	mainScreen.remove(obstacle.getImage());
+	    }
+	    obstacleList.clear();
+	    
 	    gameMusic.stopSound();
 	}
 	
@@ -126,6 +136,8 @@ public class GameScreenPane extends GraphicsPane {
 		universalTimer.scheduleAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
+				if (!gameRunning) return;
+				
 				moveRoad();
 				moveTrees();
 				moveObstacles();
@@ -206,9 +218,17 @@ public class GameScreenPane extends GraphicsPane {
 		player2Score.speedScore();
 		twoScore.setLabel(player2Score.scoreFormat());
         centerScoreLabel(twoScore, 730);
-        
-		if(raceTimer.getTimeLeft() == 0) {
+		
+		if (raceTimer.getTimeLeft() == 0) {
 			raceTimer.stopCountdown();
+			gameRunning = false;
+
+			// Clear obstacles
+			for (Obstacle obstacle : obstacleList) {
+				mainScreen.remove(obstacle.getImage());
+			}
+			obstacleList.clear();
+
 			mainScreen.switchToWinScreen();
 		}
     }
