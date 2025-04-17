@@ -6,6 +6,7 @@ import acm.graphics.GObject;
 public class WinScreenPane extends GraphicsPane {
 	private SoundPlayer endMusic = new SoundPlayer();
 	private GameScreenPane gameScreenPane;
+	private GImage titleButton;
 	
 	//Sets up the winning screen pane once the game ends as it goes over the screen to show winner
 	public WinScreenPane(MainApplication mainScreen, GameScreenPane gameScreenPane) {
@@ -16,8 +17,8 @@ public class WinScreenPane extends GraphicsPane {
 	//Shows the content of the win screen pane
 	@Override
 	public void showContent() {
-		addReturnTitleButton();
 		addWinnerDisplay();
+		addReturnTitleButton();
 		playMusic();
 	}
 
@@ -32,9 +33,20 @@ public class WinScreenPane extends GraphicsPane {
 	
 	//Adds button for the player to return to the welcome pane/main menu
 	private void addReturnTitleButton() {
-		GImage titleButton = new GImage("ReturnTitleButton.png", 200, 200);
-		titleButton.scale(0.5, 0.5);
-		titleButton.setLocation((mainScreen.getWidth() - titleButton.getWidth())/ 2, 215);
+		titleButton = new GImage("media/ReturnTitleButton.png", 200, 200);
+		
+		if (gameScreenPane.getPlayerOneScore() > gameScreenPane.getPlayerTwoScore()) {
+			titleButton.scale(0.85, 0.85);
+			titleButton.setLocation((mainScreen.getWidth() - titleButton.getWidth())/ 2, 325);
+		}
+		else if (gameScreenPane.getPlayerOneScore() < gameScreenPane.getPlayerTwoScore()) {
+			titleButton.scale(0.85, 0.85);
+			titleButton.setLocation((mainScreen.getWidth() - titleButton.getWidth())/ 2, 325);
+		}
+		else if (gameScreenPane.getPlayerOneScore() == gameScreenPane.getPlayerTwoScore()) {
+			titleButton.scale(1.0, 1.0);
+			titleButton.setLocation((mainScreen.getWidth() - titleButton.getWidth())/ 2, 385);
+		}
 		
 		contents.add(titleButton);
 		mainScreen.add(titleButton);
@@ -76,7 +88,7 @@ public class WinScreenPane extends GraphicsPane {
 	//Allow mouse to click on button to return to the welcome screen/main menu
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(0)) {
+		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(1)) {
 			mainScreen.switchToWelcomeScreen();
 		}
 	}
