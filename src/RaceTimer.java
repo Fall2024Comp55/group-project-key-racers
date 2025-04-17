@@ -44,6 +44,7 @@ public class RaceTimer {
         }
 	}
 	
+	//Get the remaining time for count down
 	public Timer getCountdownTimer() {
 		if (countdownTimer == null) {
 			return null;
@@ -65,7 +66,7 @@ public class RaceTimer {
         return minutes + ":" + seconds;
     }
     
-    
+    //Return the game speed
     public int getSpeed() {
     	return gameSpeed;
     }
