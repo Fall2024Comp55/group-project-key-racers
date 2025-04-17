@@ -51,18 +51,15 @@ public class WinScreenPane extends GraphicsPane {
 			
 			contents.add(blueWinner);
 			mainScreen.add(blueWinner);
-<<<<<<< HEAD
-		}
-		else {
-=======
-		}else if (gameScreenPane.getPlayerOneScore() < gameScreenPane.getPlayerTwoScore()){
->>>>>>> branch 'main' of https://github.com/Fall2024Comp55/group-project-key-racers.git
+
+		} else if (gameScreenPane.getPlayerOneScore() < gameScreenPane.getPlayerTwoScore()){
 			GImage redWinner = new GImage("media/WinScreenRed.png", 200, 100);
+			redWinner.scale(0.85, 0.85);
 			redWinner.setLocation((mainScreen.getWidth() - redWinner.getWidth())/ 2, 0);
 			
 			contents.add(redWinner);
 			mainScreen.add(redWinner);
-		}else if (gameScreenPane.getPlayerOneScore() == gameScreenPane.getPlayerTwoScore()){
+		} else if (gameScreenPane.getPlayerOneScore() == gameScreenPane.getPlayerTwoScore()){
 			GImage tieWinner = new GImage("media/WinScreeTie.png", 200, 100);
 			tieWinner.setLocation((mainScreen.getWidth() - tieWinner.getWidth())/ 2, 0);
 			
