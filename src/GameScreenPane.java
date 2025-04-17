@@ -62,6 +62,7 @@ public class GameScreenPane extends GraphicsPane {
 		
 	}
 	
+	
 	@Override
 	public void showContent() {
 		car1.getCarImage().setLocation(220, 500);
@@ -129,7 +130,7 @@ public class GameScreenPane extends GraphicsPane {
 	    gameMusic.stopSound();
 	}
 	
-	// plays game music
+	//Plays game music
 	private void playMusic() {
 		gameMusic.playSound("media/Gamesound.wav");
 	}
