@@ -36,7 +36,6 @@ public class RaceTimer {
 		
 	}
 	
-	
 	//Timer stops when it reaches to 0 and a winner is determined
 	public void stopCountdown(){
 		if (countdownTimer != null) {
