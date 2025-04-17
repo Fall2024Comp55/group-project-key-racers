@@ -39,6 +39,7 @@ public class GameScreenPane extends GraphicsPane {
 	private ArrayList<Obstacle> obstacleList;
 	private RandomGenerator rgen;
 	private Timer obstacleTimer;
+	
 	//increments until enough time has passed since the previous obstacle spawned
 	private int obstacleSpawnTimer;
 	
@@ -337,18 +338,6 @@ public class GameScreenPane extends GraphicsPane {
 			road.setLocation(road.getX(), -100);
 		}
 	}
-
-	//removed
-	/*public void addObstacles() {
-		while(obstacleList.size() < 6) {
-			obstacleList.add(makeObstacles(obstacleList.size() % 2 == 0));
-		}
-		
-		for(GImage i : obstacleList) {
-			contents.add(i);
-			mainScreen.add(i);
-		}
-	}*/
 	
 	//Creates and places the image for each obstacle
 	private Obstacle makeObstacle(int r, boolean forLeftRoad) {
@@ -385,32 +374,6 @@ public class GameScreenPane extends GraphicsPane {
 	    obstacle.spawn();
 	    return obstacle;
 	}
-	
-	/*public void startObstacleMovement() {
-		obstacleTimer = new Timer();
-		obstacleTimer.scheduleAtFixedRate(new TimerTask() { // Runs the task every 50 milliseconds.
-	        @Override
-	        public void run() {
-	        	if(obstacleList.size() < 6) {
-	        		if(obstacleSpawnTimer > 50 && obstacleList.size() < 5) {
-		        		GImage o = makeObstacles(true);
-		        		contents.add(o);
-		        		mainScreen.add(o);
-		        		obstacleList.add(o);
-		        		GImage o1 = makeObstacles(false);
-		        		contents.add(o1);
-		        		mainScreen.add(o1);
-		        		obstacleList.add(o1);
-		        		obstacleSpawnTimer = 0;
-	        		} else if(obstacleList.size() < 4) {
-	        			//GImage o = makeObstacle
-	        		}
-	        		obstacleSpawnTimer++;
-	        	}
-	            moveObstacles();
-	        }
-	    }, 0, 50); // Update every 50ms (adjust for speed)
-	}*/
 	
 	//made more sense to separate the movement and placing at the top
 	private void moveObstacles() {
