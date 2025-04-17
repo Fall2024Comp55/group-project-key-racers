@@ -27,7 +27,7 @@ public class RaceTimer {
 					countdownTimer.cancel();
 				}
 			}
-		}, 0, 1000);
+		}, 1000, 1000);
 	}
 	
 	//For the car class to get time for the car to increase speed
