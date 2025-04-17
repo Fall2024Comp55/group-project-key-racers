@@ -49,8 +49,8 @@ public class GameScreenPane extends GraphicsPane {
 	public GameScreenPane(MainApplication mainScreen) {
 		this.mainScreen = mainScreen;
 		raceTimer = new RaceTimer(this);
-		car1 = new Car("BlueCar.png", 220, 500, 124, 316);
-		car2 = new Car("RedCar.png", 550, 500, 456, 648);
+		car1 = new Car("BlueCar.png", 220, 500, 130, 321);
+		car2 = new Car("RedCar.png", 550, 500, 462, 654);
 		player1Score = new Scoreboard(this);
 		player2Score = new Scoreboard(this);
 		
@@ -354,7 +354,11 @@ public class GameScreenPane extends GraphicsPane {
 		ObstacleType obstacleType;
 		
 		if (r == 0) {
-	        obstacleType = ObstacleType.FALLENTREE;
+			if(forLeftRoad) {
+				obstacleType = ObstacleType.MIRRORFALLENTREE;
+			}else {
+				obstacleType = ObstacleType.FALLENTREE;
+			}
 	    } else if (r == 1) {
 	        obstacleType = ObstacleType.BONUS;
 	    } else if (r == 2) {
@@ -369,9 +373,9 @@ public class GameScreenPane extends GraphicsPane {
 	        startXPosition += rgen.nextInt(192);
 	    } else {
 	        if (forLeftRoad) {
-	            startXPosition -= 270;
+	            startXPosition -= 325;
 	        } else {
-	            startXPosition += 50;
+	            startXPosition += 105;
 	        }
 	    }
 		
