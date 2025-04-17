@@ -51,12 +51,18 @@ public class WinScreenPane extends GraphicsPane {
 			
 			contents.add(blueWinner);
 			mainScreen.add(blueWinner);
-		}else {
+		}else if (gameScreenPane.getPlayerOneScore() < gameScreenPane.getPlayerTwoScore()){
 			GImage redWinner = new GImage("media/WinScreenRed.png", 200, 100);
 			redWinner.setLocation((mainScreen.getWidth() - redWinner.getWidth())/ 2, 0);
 			
 			contents.add(redWinner);
 			mainScreen.add(redWinner);
+		}else if (gameScreenPane.getPlayerOneScore() == gameScreenPane.getPlayerTwoScore()){
+			GImage tieWinner = new GImage("media/WinScreeTie.png", 200, 100);
+			tieWinner.setLocation((mainScreen.getWidth() - tieWinner.getWidth())/ 2, 0);
+			
+			contents.add(tieWinner);
+			mainScreen.add(tieWinner);
 		}
 	}
 	
@@ -65,7 +71,7 @@ public class WinScreenPane extends GraphicsPane {
 		endMusic.playEndSound("media/Gameend.wav");
 	}
 	
-	//Allow mousse to click on button to return to the welcome screen/main menu
+	//Allow mouse to click on button to return to the welcome screen/main menu
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(1)) {
