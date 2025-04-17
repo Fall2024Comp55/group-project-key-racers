@@ -76,7 +76,7 @@ public class WinScreenPane extends GraphicsPane {
 	//Allow mouse to click on button to return to the welcome screen/main menu
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(1)) {
+		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(0)) {
 			mainScreen.switchToWelcomeScreen();
 		}
 	}
