@@ -66,7 +66,10 @@ public class GameScreenPane extends GraphicsPane {
 	@Override
 	public void showContent() {
 		car1.getCarImage().setLocation(220, 500);
+		car1.resetBlueCarPosition();
 		car2.getCarImage().setLocation(550, 500);
+		car2.resetRedCarPosition();
+		
 		gameRunning = true;
 		playMusic();
 		addRoad();

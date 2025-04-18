@@ -28,6 +28,16 @@ public class Car implements ActionListener{
 		t = new Timer(MS, this);
 	}
 	
+	// Reset location for blue car
+	public void resetBlueCarPosition() {
+		this.positionX = 220;
+	}
+	
+	// Reset location for red car
+	public void resetRedCarPosition() {
+		this.positionX = 550;
+	}
+	
 	//Moves the car to the left
 	public void updateXleft() {
 		positionX -= 8;
