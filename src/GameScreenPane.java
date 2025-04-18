@@ -40,13 +40,14 @@ public class GameScreenPane extends GraphicsPane {
 	private RandomGenerator rgen;
 	private Timer obstacleTimer;
 	
-	//increments until enough time has passed since the previous obstacle spawned
+	//Increments until enough time has passed since the previous obstacle spawned
 	private int obstacleSpawnTimer;
 	
-	private Random rand = new Random(); //// Create a random number generator for the trees
+	private Random rand = new Random(); //Create a random number generator for the trees
 	
 	private Timer universalTimer;
 	
+	//Adds in objects when the game starts as the main screen
 	public GameScreenPane(MainApplication mainScreen) {
 		this.mainScreen = mainScreen;
 		raceTimer = new RaceTimer(this);
