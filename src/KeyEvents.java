@@ -8,13 +8,14 @@ public class KeyEvents extends JPanel implements KeyListener {
 	private GameScreenPane gameScreenPane;
 	private Set<Integer> keysPressed = new HashSet<>();
 	
-	
+	//Gets key actions to work in the screen
 	public KeyEvents(GameScreenPane gameScreenPane) {
         this.gameScreenPane = gameScreenPane;
 		setFocusable(true);
         addKeyListener(this);
     }
 	
+	//Makes the cars move from clicking on these specific keys
 	 @Override
 	 public void keyPressed(KeyEvent e) {
 		 int key = e.getKeyCode();
@@ -36,15 +37,16 @@ public class KeyEvents extends JPanel implements KeyListener {
 			 }
 		 }
 		 	 
-	 }
+	}
 
-	    @Override
-	    public void keyReleased(KeyEvent e) {
-	    	int key = e.getKeyCode();
-	    	keysPressed.remove(key);
-	    }
+	//When key is released, the car no longer moves
+	@Override
+	public void keyReleased(KeyEvent e) {
+		int key = e.getKeyCode();
+		keysPressed.remove(key);
+	}
 
-	    @Override
-	    public void keyTyped(KeyEvent e) {}
+	@Override
+	public void keyTyped(KeyEvent e) {}
 
 }
