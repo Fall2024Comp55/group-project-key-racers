@@ -4,6 +4,9 @@ import acm.graphics.GImage;
 import acm.graphics.GObject;
 
 public class WelcomePane extends GraphicsPane{
+	private SoundPlayer menuMusic = new SoundPlayer();
+	private boolean musicPlaying = false;
+	
 	//Sets up welcome pane as the main screen
 	public WelcomePane(MainApplication mainScreen) {
 		this.mainScreen = mainScreen;
@@ -15,6 +18,11 @@ public class WelcomePane extends GraphicsPane{
 		addPicture();
 		addDescriptionButton();
 		addStartGameButton();
+		
+		if (menuMusic != null && !musicPlaying) {
+			playMusic();
+			musicPlaying = true;
+		}
 	}
 
 	//Hides the content of the welcome pane/main menu
@@ -58,6 +66,10 @@ public class WelcomePane extends GraphicsPane{
 
 	}
 	
+	private void playMusic() {
+			menuMusic.playSound("media/MainmenuSound.wav");
+	}
+	
 	//Mouse clicked leads to either the game or the description pane/instructions
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -65,6 +77,10 @@ public class WelcomePane extends GraphicsPane{
 			mainScreen.switchToDescriptionScreen();
 		}
 		else if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(2)) {
+			if (musicPlaying) {
+				menuMusic.stopSound();
+				musicPlaying = false;
+			}
 			mainScreen.switchToGameScreen();
 		}
 	}
