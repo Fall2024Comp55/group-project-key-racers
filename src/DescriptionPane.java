@@ -32,7 +32,7 @@ public class DescriptionPane extends GraphicsPane{
 	
 	//This method display the image in the background
 	public void disPlay() {
-		GImage backGround = new GImage("InstructionsScreen.jpg");
+		GImage backGround = new GImage("instructionImage.png");
 		backGround.setSize(WINDOW_WIDTH,WINDOW_HEIGHT);
 		
 		contents.add(backGround);
