@@ -8,13 +8,13 @@ public class WinScreenPane extends GraphicsPane {
 	private GameScreenPane gameScreenPane;
 	private GImage titleButton;
 	
-	//Sets up the winning screen pane once the game ends as it goes over the screen to show winner
+	// Sets up the winning screen pane once the game ends as it goes over the screen to show winner
 	public WinScreenPane(MainApplication mainScreen, GameScreenPane gameScreenPane) {
 		this.mainScreen = mainScreen;
 		this.gameScreenPane = gameScreenPane;
 	}
 	
-	//Shows the content of the win screen pane
+	// Shows the content of the win screen pane
 	@Override
 	public void showContent() {
 		addWinnerDisplay();
@@ -22,7 +22,7 @@ public class WinScreenPane extends GraphicsPane {
 		playMusic();
 	}
 
-	//Hides the content of the win screen pane
+	// Hides the content of the win screen pane
 	@Override
 	public void hideContent() {
 		for(GObject item : contents) {
@@ -31,7 +31,7 @@ public class WinScreenPane extends GraphicsPane {
 		contents.clear();
 	}
 	
-	//Adds button for the player to return to the welcome pane/main menu
+	// Adds button for the player to return to the welcome pane/main menu
 	private void addReturnTitleButton() {
 		titleButton = new GImage("media/ReturnTitleButton.png", 200, 200);
 		
@@ -53,8 +53,8 @@ public class WinScreenPane extends GraphicsPane {
 
 	}
 	
-	//Display the winner of the game
-	//Note: Add a screen in case the players tied
+	// Display the winner of the game
+	// Note: Add a screen in case the players tied
 	private void addWinnerDisplay() {
 		if (gameScreenPane.getPlayerOneScore() > gameScreenPane.getPlayerTwoScore()) {
 			GImage blueWinner = new GImage("media/WinScreenBlue.png", 200, 100);
@@ -80,12 +80,12 @@ public class WinScreenPane extends GraphicsPane {
 		}
 	}
 	
-	//Plays the background sound for the winner screen
+	// Plays the background sound for the winner screen
 	private void playMusic() {
 		endMusic.playEndSound("media/Gameend.wav");
 	}
 	
-	//Allow mouse to click on button to return to the welcome screen/main menu
+	// Allow mouse to click on button to return to the welcome screen/main menu
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(1)) {

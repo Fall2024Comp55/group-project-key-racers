@@ -7,12 +7,12 @@ public class WelcomePane extends GraphicsPane{
 	private SoundPlayer menuMusic = new SoundPlayer();
 	private boolean musicPlaying = false;
 	
-	//Sets up welcome pane as the main screen
+	// Sets up welcome pane as the main screen
 	public WelcomePane(MainApplication mainScreen) {
 		this.mainScreen = mainScreen;
 	}
 	
-	//Shows the content of the welcome pane/main menu
+	// Shows the content of the welcome pane/main menu
 	@Override
 	public void showContent() {
 		addPicture();
@@ -25,7 +25,7 @@ public class WelcomePane extends GraphicsPane{
 		}
 	}
 
-	//Hides the content of the welcome pane/main menu
+	// Hides the content of the welcome pane/main menu
 	@Override
 	public void hideContent() {
 		for(GObject item : contents) {
@@ -34,7 +34,7 @@ public class WelcomePane extends GraphicsPane{
 		contents.clear();
 	}
 	
-	//Add in the title screen of the game aka background image for the game
+	// Add in the title screen of the game aka background image for the game
 	private void addPicture(){
 		GImage startImage = new GImage("TitleScreen.jpg", 200, 100);
 		startImage.scale(0.85, 0.75);
@@ -44,7 +44,7 @@ public class WelcomePane extends GraphicsPane{
 		mainScreen.add(startImage);
 	}
 	
-	//Add in the Instruction button, which is where the player can click on to find instructions
+	// Add in the Instruction button, which is where the player can click on to find instructions
 	private void addDescriptionButton() {
 		GImage moreButton = new GImage("InstructionsButton.png", 200, 200);
 		moreButton.scale(0.5, 0.5);
@@ -55,7 +55,7 @@ public class WelcomePane extends GraphicsPane{
 
 	}
 	
-	//Add in the Start Game button, which is where the player clicks on to start the game
+	// Add in the Start Game button, which is where the player clicks on to start the game
 	private void addStartGameButton() {
 		GImage moreButton = new GImage("StartGameButton.png", 200, 200);
 		moreButton.scale(0.5, 0.5);
@@ -70,7 +70,7 @@ public class WelcomePane extends GraphicsPane{
 			menuMusic.playSound("media/MainmenuSound.wav");
 	}
 	
-	//Mouse clicked leads to either the game or the description pane/instructions
+	// Mouse clicked leads to either the game or the description pane/instructions
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (mainScreen.getElementAtLocation(e.getX(), e.getY()) == contents.get(1)) {
