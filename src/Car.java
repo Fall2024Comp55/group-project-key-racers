@@ -40,13 +40,13 @@ public class Car implements ActionListener{
 	
 	//Moves the car to the left
 	public void updateXleft() {
-		positionX -= 8;
+		positionX -= 10;
 		carImage.setLocation(positionX, positionY);
 	}
 	
 	//Moves the car to the right
 	public void updateXright() {
-		positionX += 8;
+		positionX += 10;
 		carImage.setLocation(positionX, positionY);
 	}
 	

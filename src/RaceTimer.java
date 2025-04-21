@@ -15,7 +15,7 @@ public class RaceTimer {
 	
 	//Race timer starts running after the 3 second count down; will add this later
 	public void startCountdown(){
-		timeLeft = 8;
+		timeLeft = 180;
 		gameSpeed = 5;
 		countdownTimer = new Timer();
 		countdownTimer.scheduleAtFixedRate(new TimerTask() {
@@ -55,7 +55,7 @@ public class RaceTimer {
     private String formatTime() {
         int minutes = timeLeft / 60;
         int seconds = timeLeft % 60;
-        if (seconds % 5 == 0) {
+        if (seconds % 10 == 0) {
         	gameSpeed++;
         }
         
